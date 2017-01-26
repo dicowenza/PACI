@@ -1,10 +1,10 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="index.php">Pacidnah</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Page d'accueil</a></li>
+      <li class="active"><a href="index.php">Page d'accueil</a></li>
       <li><a href="#">Mes demandes(0)</a></li>
       <li><a href="#">Mes offres(0)</a></li>
     </ul>
