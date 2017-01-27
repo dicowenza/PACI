@@ -16,12 +16,11 @@
 
 <body text-align="center">
   <?php
-    session_start();
     include_once ("navbar.php"); 
   ?>
 
   <?php
-  if ($SESSION["empty_fields"] = 'true'){
+  if (isset($_GET["empty_fields"])){
     $message='Remplissez tous les champs svp';
     echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
   }

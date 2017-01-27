@@ -1,13 +1,9 @@
 <?php
-session_start();
 if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['password']) || empty($_POST['pseudo']) || empty($_POST['email'])){
-    $SESSION["empty_fields"] = 'true';
-    header('Location: signup.php');
+    header('Location: signup.php?empty_fields=true');
     break;
 }
-
-
-/*try
+try
 {
 	$bdd = new PDO('mysql:host=dbserver;dbname=test;charset=utf8', 'jefseutin', 'jefco');
 }
@@ -27,5 +23,5 @@ catch (Exception $e)
     $data = $req->fetchAll();
 
     header('Location: index.php');
-?>*/
+?>
 
