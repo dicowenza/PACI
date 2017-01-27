@@ -18,11 +18,12 @@
   <?php include_once ("navbar.php"); ?>
 
   <div align="center" style="margin-top: 20%">
+    <h1 align="center" >Connexion</h1><br>
 		<input type="text" class="form-control" id="usr" placeholder="Login" style="width:20%; height:15%; text-align:center; font-size:20pt;">
 		<br><br>
     <input type="password" class="form-control" id="pwd" placeholder="Mot de passe" style="width:20%; height:15%; text-align:center; font-size:20pt;">
     <br><br>
-    <button type="button" class="btn btn-success" style="font-size: 35px ! important; width: 20%; height: 100px;">Se connecter</button>
+    <button type="button" class="btn btn-success" style="font-size: 35px ! important; width: 30%; height: 100px;">Se connecter</button>
 
   </div>
 
