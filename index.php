@@ -19,7 +19,7 @@
 
   <div align="center" style="margin-top: 20%">
 
-    <button style="font-size: 35px ! important; width: 500px; height: 100px;" class="btn btn-success" type="button">QUESTIONS</button>
+    <a href="questionsView.php"><button style="font-size: 35px ! important; width: 500px; height: 100px;" class="btn btn-success" type="button" >QUESTIONS</button></a>
     <br><br>
     
 
