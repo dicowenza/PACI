@@ -17,14 +17,26 @@
 <body text-align="center">
   <?php include_once ("navbar.php"); ?>
 
+  <?php
+  if (isset($_GET["empty_fields"])){
+    $message='Remplissez tous les champs svp';
+    echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
+  }
+  if (isset($_GET["bad_language"])){
+    $message='Pas de gens comme ça pleaz';
+    echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
+  }
+  ?>
+
   <div align="center" style="margin-top: 20%">
     <h1 align="center" >Connexion</h1><br>
-		<input type="text" class="form-control" id="usr" placeholder="Login" style="width:20%; height:15%; text-align:center; font-size:20pt;">
+    <form method="post" action="connexion.php">
+		<input type="text" class="form-control" id="login" name="login" placeholder="Pseudo ou email" style="width:20%; height:15%; text-align:center; font-size:20pt;">
 		<br><br>
-    <input type="password" class="form-control" id="pwd" placeholder="Mot de passe" style="width:20%; height:15%; text-align:center; font-size:20pt;">
+    <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" style="width:20%; height:15%; text-align:center; font-size:20pt;">
     <br><br>
-    <button type="button" class="btn btn-success" style="font-size: 35px ! important; width: 30%; height: 100px;">Se connecter</button>
-
+    <input type="submit" value="Se connecter" class="btn btn-success" style="font-size: 35px ! important; width: 30%; height: 100px;">
+    </form>
   </div>
 
 </body>
