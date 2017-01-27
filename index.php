@@ -21,9 +21,12 @@
 
     <a href="questionsView.php"><button style="font-size: 35px ! important; width: 500px; height: 100px;" class="btn btn-success" type="button" >QUESTIONS</button></a>
     <br><br>
+
+    <a href="servicesView.php"><button style="font-size: 35px ! important; width: 500px; height: 100px;" class="btn btn-primary" type="button" >SERVICES</button></a>
+    <br><br>
     
 
-    <div class="btn-group">
+    <!--<div class="btn-group">
       <button style="font-size: 35px ! important; width: 500px; height: 100px;" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SERVICES
       <span class="caret"></span></button>
       <ul class="dropdown-menu" aria-labelledby="services">
@@ -31,7 +34,7 @@
         <li><a style="font-size: 35px ! important;" href="#">Soins infirmiers</a></li>
         <li><a style="font-size: 35px ! important;" href="#">Loisirs</a></li>
       </ul>
-    </div>
+    </div>-->
 
   </div>
 
