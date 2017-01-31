@@ -30,7 +30,7 @@
       {
         die('Erreur : ' . $e->getMessage());
       }
-      if (isset($_SESSION["started"]) && $_SESSION["started"] == "true"){
+      if (isset($_SESSION["started"]) && isset($_GET["my_services"]) && $_SESSION["started"] == "true" && $_GET["my_services"] == "true"){
         $req = $bdd->prepare("SELECT * FROM service WHERE service_user_ID = ".$_SESSION["user_ID"]);
       } else {
         $req = $bdd->prepare("SELECT * FROM service");
