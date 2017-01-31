@@ -5,7 +5,7 @@
       <a style="font-size: 20pt ! important;" class="navbar-brand" href="index.php">Pacidnah</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active" style="font-size: 20pt ! important;"><a style="padding : 25px" href="index.php">Page d'accueil</a></li>
+      <li style="font-size: 20pt ! important;"><a href="index.php">Page d'accueil</a></li>
       <li><a style="font-size: 20pt ! important;" href="questionsView.php"><?php if (isset($_SESSION["started"]) && $_SESSION["started"] == "true") echo 'Mes questions('.$_SESSION["questions"].')' ?></a></li>
       <li><a style="font-size: 20pt ! important;" href="servicesView.php"><?php if (isset($_SESSION["started"]) && $_SESSION["started"] == "true") echo 'Mes services('.$_SESSION["services"].')' ?></a></li>
     </ul>

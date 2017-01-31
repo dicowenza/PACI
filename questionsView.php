@@ -32,8 +32,11 @@
         die('Erreur : ' . $e->getMessage());
       }
 
-      $req = $bdd->prepare("SELECT * FROM faq");
-      $req->execute();
+      if (isset($_SESSION["started"]) && $_SESSION["started"] == "true"){
+        $req = $bdd->prepare("SELECT * FROM faq WHERE faq_user_ID = ".$_SESSION["user_ID"]);
+      } else {
+        $req = $bdd->prepare("SELECT * FROM faq");
+      }      $req->execute();
       while($row = $req->fetch(PDO::FETCH_ASSOC)) {
         echo '<button style="white-space: normal; padding : 3%; font-size: 18pt ! important;" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">'.$row["faq_question"].'</button><br/>
 
