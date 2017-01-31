@@ -78,14 +78,14 @@
                 <br><ul class="nav nav-list">
                  <li style="font-size: 18pt ! important;" class="nav-header"><u><b>Catégorie</b></u></li><br>
                  <li>
-                    <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="optradio">Aide à domicile</label>
-                    <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="optradio">Soins infirmiers</label>
-                    <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="optradio">Loisirs</label> 
+                    <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category">Aide à domicile</label>
+                    <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category">Soins infirmiers</label>
+                    <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category">Loisirs</label> 
                  </li><br><br>
                  <li style="font-size: 18pt ! important;" class="nav-header"><u><b>Titre</b></u></li><br>
                  <li><input style="font-size: 18pt ! important;" class="input-xlarge" type="text" name="title"></li><br><br>
                  <li style="font-size: 18pt ! important;" class="nav-header"><u><b>Description</b></u></li><br>
-                 <li><textarea style="font-size: 18pt ! important;" class="input-xlarge" name="sug" rows="5"></textarea></li>
+                 <li><textarea style="font-size: 18pt ! important;" class="input-xlarge" name="description" rows="5"></textarea></li>
                 </ul><br><br>
                </fieldset>
                </form>
