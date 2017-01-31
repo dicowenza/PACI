@@ -17,8 +17,10 @@
 <body text-align="center">
   <?php include_once ("navbar.php"); ?>
 
-  <div align="center" style="margin-top: 20%">
+  <h1 align="center">Consulter les questions ou poser la votre si vous ne la voyez pas</h1>
 
+
+  <div align="center" style="margin: 15%">
     <?php
 
       try
@@ -33,9 +35,7 @@
       $req = $bdd->prepare("SELECT * FROM faq");
       $req->execute();
       while($row = $req->fetch(PDO::FETCH_ASSOC)) {
-        //echo '<button style="font-size: 18pt ! important;" type="button" class="btn btn-default">'.$row["faq_question"].'</button><br>';
-
-        echo '<button style="font-size: 18pt ! important;" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">'.$row["faq_question"].'</button><br>
+        echo '<button style="white-space: normal; padding : 3%; font-size: 18pt ! important;" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">'.$row["faq_question"].'</button><br/>
 
         <!-- Modal -->
         <div style="padding-top: 15%" id="myModal" class="modal fade" role="dialog">
@@ -63,7 +63,7 @@
     ?>
 
     <br>
-    <button style="font-size: 35px ! important; width: 500px; height: 100px;" class="btn btn-success" type="button">POSER UNE QUESTION</button>
+    <button style="white-space: normal;font-size: 35px ! important; width: 80%; height: 10%;" class="btn btn-success" type="button">POSER UNE QUESTION</button>
     <br><br>
 
   </div>

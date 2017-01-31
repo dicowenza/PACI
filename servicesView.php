@@ -33,6 +33,8 @@
       $req = $bdd->prepare("SELECT * FROM service");
       $req->execute();
       while($row = $req->fetch(PDO::FETCH_ASSOC)) {
+        $date = strtotime($row["service_date"]);
+        $delay = strtotime($row["service_delay"]);
         echo '
         <div id="myModal">
           <div class="modal-dialog">
@@ -46,7 +48,7 @@
                 <p style="font-size: 18pt ! important;">'.$row["service_description"].'</p>
               </div>
               <div class="modal-footer">
-                <p style="font-size: 13pt ! important;">Valable du '.$row["service_date"].' jusqu\'au '.$row["service_delay"].'</p>
+                <p style="font-size: 13pt ! important;">Valable du '.date("d/m/y", $date).' jusqu\'au '.date("d/m/y", $delay).'</p>
               </div>
             </div>
 
