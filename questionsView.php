@@ -67,6 +67,32 @@
 
     <br>
     <button style="white-space: normal;font-size: 35px ! important; width: 80%; height: 10%;" class="btn btn-success" type="button">POSER UNE QUESTION</button>
+        <div id="addServiceForm" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" style="font-size: 23pt ! important;">JE VEUX SAVOIR</h4>
+          </div>
+          <div class="modal-body">
+             <div>
+               <form class="addService">
+               <fieldset>
+                <br><ul class="nav nav-list">
+                 <li style="font-size: 18pt ! important;" class="nav-header"><u><b>La question intéressante</b></u></li><br>
+                 <li><input style="font-size: 18pt ! important;" class="input-xlarge" type="text" name="title"></li><br><br>
+                </ul><br><br>
+               </fieldset>
+               </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success" id="submit">Envoyer</button>
+            <button href="#" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
     <br><br>
 
   </div>
