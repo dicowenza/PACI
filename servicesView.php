@@ -30,8 +30,11 @@
       {
         die('Erreur : ' . $e->getMessage());
       }
-
-      $req = $bdd->prepare("SELECT * FROM service");
+      if (isset($_SESSION["started"]) && $_SESSION["started"] == "true"){
+        $req = $bdd->prepare("SELECT * FROM service WHERE service_user_ID = ".$_SESSION["user_ID"]);
+      } else {
+        $req = $bdd->prepare("SELECT * FROM service");
+      }
       $req->execute();
       while($row = $req->fetch(PDO::FETCH_ASSOC)) {
         $date = strtotime($row["service_date"]);
