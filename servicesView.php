@@ -8,7 +8,13 @@
   <title>Mon ptit index</title>
 </head>
 
-<script src="bootstrap/js/jquery.js"></script>
+<script src="bootstrap/js/jquery.js">
+$(".dropdown-menu li a").click(function(){
+    var selText = $(this).text();
+    $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+  }); 
+  
+</script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
@@ -72,7 +78,7 @@
               </div>
               <div class="modal-body">
                 <p style="font-size: 18pt ! important;"><u><b>Que souhaitez vous lui dire ?</b></u><br><br>
-                <textarea style="font-size: 18pt ! important;" class="input-xlarge" name="description" rows="5"></textarea>
+                <textarea style="font-size: 18pt ! important; width:80%;" class="input-xlarge" name="description" rows="5"></textarea>
               </div>
               <div class="modal-footer">
                 <button class="btn btn-success" type="button" data-toggle="modal" data-target="#addAnswerForm">Répondre</button>
@@ -102,14 +108,24 @@
                 <br><ul class="nav nav-list">
                  <li style="font-size: 18pt ! important;" class="nav-header"><u><b>Catégorie</b></u></li><br>
                  <li>
+                     <div style="width: 80%" class="btn-group">
+ 
+                        <a class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a style="font-size: 15pt ! important;">Aide à domicile</a></li>
+                          <li><a style="font-size: 15pt ! important;">Soins infirmiers</a></li>
+                          <li><a style="font-size: 15pt ! important;">Loisirs</a></li>
+                        </ul>
+                      </div><br><br>
+                      
                     <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category">Aide à domicile</label>
                     <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category">Soins infirmiers</label>
                     <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category">Loisirs</label> 
                  </li><br><br>
                  <li style="font-size: 18pt ! important;" class="nav-header"><u><b>Titre</b></u></li><br>
-                 <li><input style="font-size: 18pt ! important;" class="input-xlarge" type="text" name="title"></li><br><br>
+                 <li><input style="font-size: 18pt ! important; width:80%" class="input-xlarge" type="text" name="title"></li><br><br>
                  <li style="font-size: 18pt ! important;" class="nav-header"><u><b>Description</b></u></li><br>
-                 <li><textarea style="font-size: 18pt ! important;" class="input-xlarge" name="description" rows="5"></textarea></li>
+                 <li><textarea style="font-size: 18pt ! important; width:80%" class="input-xlarge" name="description" rows="5"></textarea></li>
                 </ul><br><br>
                </fieldset>
                </form>
