@@ -71,7 +71,7 @@
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" style="font-size: 23pt ! important;">JE VEUX SAVOIR</h4>
+            <h4 class="modal-title" style="font-size: 23pt ! important;">JE VEUX REPONDRE</h4>
           </div>
           <div class="modal-body">
              <div>
@@ -90,10 +90,9 @@
                </form>
           </div>
         </div>
-
       </div>
     </div>
-    <br><br>
+  </div>
 
     <br>
     <button style="font-size: 35px ! important;  width: 80%; height: 10%;" class="btn btn-success" type="button" data-toggle="modal" data-target="#addQuestionForm" >POSER UNE QUESTION</button>
