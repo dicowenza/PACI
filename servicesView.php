@@ -8,23 +8,16 @@
   <title>Mon ptit index</title>
 </head>
 
-<script src="bootstrap/js/jquery.js">
-$(".dropdown-menu li a").click(function(){
-    var selText = $(this).text();
-    $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
-  }); 
-  
-</script>
+<script src="bootstrap/js/jquery.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-  
 </script>
 
 <body text-align="center">
   <?php include_once ("navbar.php"); ?>
 
-  <div align="center" style="margin-top: 15%">
+  <div align="center" style="margin-top: 5%">
 
     <?php
 
@@ -58,15 +51,15 @@ $(".dropdown-menu li a").click(function(){
                 <p style="font-size: 18pt ! important;">'.$row["service_description"].'</p>
               </div>
               <div class="modal-footer" style="text-align: center;">
-                <a href="#" class="btn btn-default" type="button" data-toggle="modal" data-target="#'.$row["service_ID"].'">Contacter la personne</a><br><br>
-                <p style="font-size: 13pt ! important;">Valable du '.date("d/m/y", $date).' jusqu\'au '.date("d/m/y", $delay).'</p>
+                <a style="text-align:left;float:left;" href="#" class="btn btn-default" type="button" data-toggle="modal" data-target="#'.$row["service_ID"].'">Contacter la personne</a>
+                <p style="text-align:right;float:right;font-size: 13pt ! important;">Valable du '.date("d/m/y", $date).' jusqu\'au '.date("d/m/y", $delay).'</p>
               </div>
             </div>
 
           </div>
         </div>
 
-        <!-- Modal -->
+        <!-- Modal contacter service-->
         <div style="padding-top: 15%" id="'.$row["service_ID"].'" class="modal fade" role="dialog">
           <div class="modal-dialog">
 
@@ -107,17 +100,7 @@ $(".dropdown-menu li a").click(function(){
                <fieldset>
                 <br><ul class="nav nav-list">
                  <li style="font-size: 18pt ! important;" class="nav-header"><u><b>Catégorie</b></u></li><br>
-                 <li>
-                     <div style="width: 80%" class="btn-group">
- 
-                        <a class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                          <li><a style="font-size: 15pt ! important;">Aide à domicile</a></li>
-                          <li><a style="font-size: 15pt ! important;">Soins infirmiers</a></li>
-                          <li><a style="font-size: 15pt ! important;">Loisirs</a></li>
-                        </ul>
-                      </div><br><br>
-                      
+                 <li>                     
                     <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category">Aide à domicile</label>
                     <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category">Soins infirmiers</label>
                     <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category">Loisirs</label> 

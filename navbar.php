@@ -12,7 +12,7 @@
     <ul class="nav navbar-nav navbar-right">
     <?php
       if (isset($_SESSION["started"]) && $_SESSION["started"] == "true"){
-          echo "<li><a style='font-size: 20pt ! important;' href='#'><span class='glyphicon glyphicon-user'></span> ".$_SESSION["pseudo"]."</a></li>";
+          echo "<li><a style='font-size: 20pt ! important;' href='userProfile.php'><span class='glyphicon glyphicon-user'></span> ".$_SESSION["pseudo"]."</a></li>";
           echo "<li><a style='font-size: 20pt ! important;' href='logout.php'><span class='glyphicon glyphicon-log-in'></span> Se déconnecter</a></li>";
       }else{
         echo"<li><a style='font-size: 20pt ! important;' href='signup.php'><span class='glyphicon glyphicon-user'></span> S'inscire</a></li>
