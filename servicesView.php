@@ -63,7 +63,7 @@
     ?>
 
     <br>
-    <button style="font-size: 35px ! important; width: 500px; height: 100px;" class="btn btn-success" type="button" data-toggle="modal" data-target="#addServiceForm" >PROPOSER MES SERVICES</button>
+    <button style="font-size: 35px ! important;  width: 80%; height: 10%;" class="btn btn-success" type="button" data-toggle="modal" data-target="#addServiceForm" >PROPOSER MES SERVICES</button>
     <div id="addServiceForm" class="modal fade" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->

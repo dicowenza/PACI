@@ -15,7 +15,10 @@
 </script>
 
 <body text-align="center">
-  <?php include_once ("navbar.php"); ?>
+	
+	<?php 
+		include_once ("navbar.php"); 
+	?>
 
   <div align="center" style="margin-top: 20%">
 

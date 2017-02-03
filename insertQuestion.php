@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['password']) || empty($_POST['pseudo']) || empty($_POST['email'])){
+/*if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['password']) || empty($_POST['pseudo']) || empty($_POST['email'])){
     header('Location: signup.php?empty_fields=true');
     break;
-}
+}*/
 
 try
 {
@@ -17,10 +17,10 @@ catch (Exception $e)
     $req->execute(array(
             'userID' => $_SESSION['user_ID'],
             'question' => $_POST['question'],
-            'answer' => $_POST['answer'],
+            'answer' => ""
             ));
 
     $data = $req->fetchAll();
 
-    header('Location: questionsView.php');
+   // header('Location: questionsView.php');
 ?>

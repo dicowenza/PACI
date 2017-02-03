@@ -1,14 +1,14 @@
 <?php
 	class User{
 
-		private identite;
-		private age;
-		private status;
-		private mail;
-		private addresse;
+		private $identite;
+		private $age;
+		private $status;
+		private $mail;
+		private $addresse;
 
-		private login;
-		private mot_de_pass;
+		private $login;
+		private $mot_de_pass;
 		
 
 
@@ -24,13 +24,11 @@
 			return $this->status;
 		}
 
-		public function getAdrese(){
+		public function getAdresse(){
 			return $this->adresse;
 		}
 
-		public function getAdrese(){
-			return $adresse;
-		}
+
 
 		public  function getLogin(){
 			return $this->login;
