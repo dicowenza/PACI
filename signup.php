@@ -39,7 +39,7 @@
     <br><br>
     <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" style="width:20%; height:15%; text-align:center; font-size:20pt;">
     <br><br>
-    <input type="submit" value="Valider"class="btn btn-success" style="font-size: 35px ! important; width: 30%; height: 100px;">
+    <input type="submit" value="Valider" class="btn btn-success" style="font-size: 35px ! important; width: 30%; height: 100px;">
     </form>
   </div>
 

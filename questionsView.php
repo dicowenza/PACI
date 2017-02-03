@@ -38,7 +38,7 @@
         $req = $bdd->prepare("SELECT * FROM faq");
       }      $req->execute();
       while($row = $req->fetch(PDO::FETCH_ASSOC)) {
-        echo '<button style="white-space: normal; padding : 3%; font-size: 18pt ! important;" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">'.$row["faq_question"].'</button><br/>
+        echo '<button style="white-space: normal; margin: 3%; padding : 3%; font-size: 18pt ! important;" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">'.$row["faq_question"].'</button><br/>
 
         <!-- Modal -->
         <div style="padding-top: 15%" id="myModal" class="modal fade" role="dialog">
@@ -54,6 +54,7 @@
                 <p style="font-size: 18pt ! important;">'.$row["faq_answer"].'</p>
               </div>
               <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#addQuestionForm">Répondre</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
               </div>
             </div>
@@ -66,8 +67,8 @@
     ?>
 
     <br>
-    <button style="white-space: normal;font-size: 35px ! important; width: 80%; height: 10%;" class="btn btn-success" type="button">POSER UNE QUESTION</button>
-        <div id="addServiceForm" class="modal fade" role="dialog">
+    <button style="font-size: 35px ! important;  width: 80%; height: 10%;" class="btn btn-success" type="button" data-toggle="modal" data-target="#addQuestionForm" >POSER UNE QUESTION</button>
+    <div id="addQuestionForm" class="modal fade" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -76,18 +77,19 @@
           </div>
           <div class="modal-body">
              <div>
-               <form class="addService">
+               <form class="addQuestion" method="post" action="insertQuestion.php">
                <fieldset>
                 <br><ul class="nav nav-list">
-                 <li style="font-size: 18pt ! important;" class="nav-header"><u><b>La question intéressante</b></u></li><br>
-                 <li><input style="font-size: 18pt ! important;" class="input-xlarge" type="text" name="title"></li><br><br>
+                 <br><br>
+                 <li style="font-size: 18pt ! important;" class="nav-header"><u><b>La fameuse question :</b></u></li><br>
+                 <li><input type="textarea" name="question" style="font-size: 18pt ! important; size: 50px;" rows="5" class="input-xlarge"></li>
                 </ul><br><br>
                </fieldset>
+               <div class="modal-footer">
+                <input type="submit" value="Valider" class="btn btn-success" id="submit"/>
+                <button href="#" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+              </div>
                </form>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-success" id="submit">Envoyer</button>
-            <button href="#" class="btn btn-danger" data-dismiss="modal">Fermer</button>
           </div>
         </div>
 
