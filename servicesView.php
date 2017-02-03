@@ -73,7 +73,7 @@
           </div>
           <div class="modal-body">
              <div>
-               <form class="addService">
+               <form id="addService" method="post" action="insertService.php">
                <fieldset>
                 <br><ul class="nav nav-list">
                  <li style="font-size: 18pt ! important;" class="nav-header"><u><b>Catégorie</b></u></li><br>
@@ -91,7 +91,7 @@
                </form>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-success" id="submit">Envoyer</button>
+            <button class="btn btn-success" type="submit" form="addService">Envoyer</button>
             <button href="#" class="btn btn-danger" data-dismiss="modal">Fermer</button>
           </div>
         </div>
