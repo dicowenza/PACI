@@ -32,8 +32,11 @@
         die('Erreur : ' . $e->getMessage());
       }
 
-      $req = $bdd->prepare("SELECT * FROM faq");
-      $req->execute();
+      if (isset($_SESSION["started"]) && isset($_GET["my_questions"]) && $_SESSION["started"] == "true" && $_GET["my_questions"] == "true"){
+        $req = $bdd->prepare("SELECT * FROM faq WHERE faq_user_ID = ".$_SESSION["user_ID"]);
+      } else {
+        $req = $bdd->prepare("SELECT * FROM faq");
+      }      $req->execute();
       while($row = $req->fetch(PDO::FETCH_ASSOC)) {
         echo '<button style="white-space: normal; padding : 3%; font-size: 18pt ! important;" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">'.$row["faq_question"].'</button><br/>
 
@@ -64,6 +67,32 @@
 
     <br>
     <button style="white-space: normal;font-size: 35px ! important; width: 80%; height: 10%;" class="btn btn-success" type="button">POSER UNE QUESTION</button>
+        <div id="addServiceForm" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" style="font-size: 23pt ! important;">JE VEUX SAVOIR</h4>
+          </div>
+          <div class="modal-body">
+             <div>
+               <form class="addService">
+               <fieldset>
+                <br><ul class="nav nav-list">
+                 <li style="font-size: 18pt ! important;" class="nav-header"><u><b>La question intéressante</b></u></li><br>
+                 <li><input style="font-size: 18pt ! important;" class="input-xlarge" type="text" name="title"></li><br><br>
+                </ul><br><br>
+               </fieldset>
+               </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success" id="submit">Envoyer</button>
+            <button href="#" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
     <br><br>
 
   </div>

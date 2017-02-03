@@ -28,11 +28,27 @@ catch (Exception $e)
 
     $row = $req->fetch(PDO::FETCH_ASSOC);
 
-    //print_r($row);
-    //echo $row['user_nickname'];
-
     $_SESSION["started"]='true';
     $_SESSION["pseudo"]=$row['user_nickname'];
+    $_SESSION["user_ID"]=$row['user_ID'];
+
+    $req = $bdd->prepare("SELECT DISTINCT COUNT(*) FROM service WHERE service_user_ID = :id");
+    $req->execute(array(
+            'id' =>  $_SESSION["user_ID"]
+            ));
+
+    $row = $req->fetch(PDO::FETCH_ASSOC);
+
+    $_SESSION["services"]=$row['COUNT(*)'];
+
+    $req = $bdd->prepare("SELECT DISTINCT COUNT(*) FROM faq WHERE faq_user_ID = :id");
+    $req->execute(array(
+            'id' =>  $_SESSION["user_ID"]
+            ));
+
+    $row = $req->fetch(PDO::FETCH_ASSOC);
+
+    $_SESSION["questions"]=$row['COUNT(*)'];
 
     header('Location: index.php');
 ?>
