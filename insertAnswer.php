@@ -13,14 +13,14 @@ catch (Exception $e)
 {
         die('Erreur : ' . $e->getMessage());
 }
-	$req = $bdd->prepare("INSERT INTO faq (faq_user_ID, faq_question, faq_answer, faq_date) VALUES (:userID, :question, :answer, now())");
+	/*$req = $bdd->prepare("INSERT INTO faq (faq_user_ID, faq_question, faq_answer, faq_date) VALUES (:userID, :question, :answer, now())");
     $req->execute(array(
             'userID' => $_SESSION['user_ID'],
             'question' => $_POST['question'],
             'answer' => "Aucune réponse disponible pour le moment!"
-            ));
+            ));*/
 
-    $data = $req->fetchAll();
+    //$data = $req->fetchAll();
 
    // header('Location: questionsView.php');
 ?>
