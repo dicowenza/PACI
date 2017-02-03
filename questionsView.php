@@ -37,11 +37,12 @@
       } else {
         $req = $bdd->prepare("SELECT * FROM faq");
       }      $req->execute();
+
       while($row = $req->fetch(PDO::FETCH_ASSOC)) {
-        echo '<button style="white-space: normal; margin: 3%; padding : 3%; font-size: 18pt ! important;" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">'.$row["faq_question"].'</button><br/>
+        echo '<button style="white-space: normal; margin: 3%; padding : 3%; font-size: 18pt ! important;" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#'.$row["faq_ID"].'">'.$row["faq_question"].'</button><br/>
 
         <!-- Modal -->
-        <div style="padding-top: 15%" id="myModal" class="modal fade" role="dialog">
+        <div style="padding-top: 15%" id="'.$row["faq_ID"].'" class="modal fade" role="dialog">
           <div class="modal-dialog">
 
             <!-- Modal content-->
