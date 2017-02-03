@@ -1,4 +1,8 @@
 <?php
+	include_once("identite_model.php");
+	include_once("log_obj_model.php");
+	include_once("adresse_model.php");
+
 	class User{
 
 		private $identite;
@@ -10,7 +14,9 @@
 		private $login;
 		private $mot_de_pass;
 		
-
+		public function __construct($nom,$prenom){
+			$this->identite=new Identite($nom,$prenom);
+		}
 
 		public function getIdentite(){
 			return $this->identite;

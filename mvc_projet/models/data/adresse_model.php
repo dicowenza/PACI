@@ -25,7 +25,7 @@
 		}
 
 		public function getLibele(){
-			return this->libele;
+			return $this->libele;
 		}
 
 		public function setRue($rue){
