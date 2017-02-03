@@ -51,8 +51,32 @@
               <div class="modal-body">
                 <p style="font-size: 18pt ! important;">'.$row["service_description"].'</p>
               </div>
-              <div class="modal-footer">
+              <div class="modal-footer" style="text-align: center;">
+                <a href="#" class="btn btn-default" type="button" data-toggle="modal" data-target="#'.$row["service_ID"].'">Contacter la personne</a><br><br>
                 <p style="font-size: 13pt ! important;">Valable du '.date("d/m/y", $date).' jusqu\'au '.date("d/m/y", $delay).'</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div style="padding-top: 15%" id="'.$row["service_ID"].'" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="font-size: 23pt ! important;">Envoyer un mail a cet utilisateur</h4>
+              </div>
+              <div class="modal-body">
+                <p style="font-size: 18pt ! important;"><u><b>Que souhaitez vous lui dire ?</b></u><br><br>
+                <textarea style="font-size: 18pt ! important;" class="input-xlarge" name="description" rows="5"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#addAnswerForm">Répondre</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
               </div>
             </div>
 
