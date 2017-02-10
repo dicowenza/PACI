@@ -41,8 +41,7 @@ catch (Exception $e)
       $row = $req->fetch(PDO::FETCH_ASSOC);
 
       if (count($row) > 1)
-        print_r($row);
-        //header("Location: index.php");
+        header("Location: index.php");
   
   ?>
 
@@ -52,6 +51,7 @@ catch (Exception $e)
     <input type="text" class="form-control" id="pseudo" name="pseudo" <?php echo'value="'.$row["user_nickname"].'"'; ?> style="width:20%; height:15%; text-align:center; font-size:20pt;">
     <br><br>
     <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" style="width:20%; height:15%; text-align:center; font-size:20pt;">
+    <input type="hidden" id="id" name="id" <?php echo'value="'.$_GET['id'].'"'; ?>>
     <br><br>
     <input type="submit" value="Valider" class="btn btn-success" style="font-size: 35px ! important; width: 30%; height: 100px;">
     </form>
