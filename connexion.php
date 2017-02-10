@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (empty($_POST['login']) || empty($_POST['password'])){
+if (empty($_POST['login']) || empty($_POST['password']) || $_POST['password'] == 'NULL'){
     header('Location: login.php?empty_fields=true');
     break;
 }

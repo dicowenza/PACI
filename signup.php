@@ -29,8 +29,8 @@
   <div align="center" style="margin-top: 10%">
     <h1 align="center">Inscription</h1><br>
     <form method="post" action="insertUser.php">
-		<input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" style="width:20%; height:15%; text-align:center; font-size:20pt;">
-		<br><br>
+    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" style="width:20%; height:15%; text-align:center; font-size:20pt;">
+    <br><br>
     <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom" style="width:20%; height:15%; text-align:center; font-size:20pt;">
     <br><br>
     <input type="text" class="form-control" id="email" name="email" placeholder="xyz.example@mail.com" style="width:20%; height:15%; text-align:center; font-size:20pt;">
