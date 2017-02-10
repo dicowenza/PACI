@@ -71,10 +71,12 @@
               </div>
               <div class="modal-body">
                 <p style="font-size: 18pt ! important;"><u><b>Que souhaitez vous lui dire ?</b></u><br><br>
-                <textarea style="font-size: 18pt ! important; width:80%;" class="input-xlarge" name="description" rows="5"></textarea>
+                <form id="addService" method="post" action="insertService.php">
+                  <textarea style="font-size: 18pt ! important; width:80%;" class="input-xlarge" name="description" rows="5"></textarea>
+                </form>
               </div>
               <div class="modal-footer">
-                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#addAnswerForm">Répondre</button>
+                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#addAnswerForm">Envoyer</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
               </div>
             </div>
