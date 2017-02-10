@@ -2,9 +2,10 @@
 	
 	include_once("identite_model.php");
 	include_once("log_obj_model.php");
+
 	#include_once("adresse_model.php");
 	#include_once("user_model.php");
-	echo "stringee";
+
 	class ConnexionServeur{
 		private $configuration;
 		private $path_config;
@@ -44,6 +45,23 @@
 		$query->execute(array('password' => $usr_log->getPassword(),'login' => $usr_log->getLogin()));
 		$row = $query->fetch(PDO::FETCH_ASSOC);
 		return $row;
+		}
+
+		public function db_load_user_questions(){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query=$connexion->prepare("SELECT * FROM faq WHERE faq_user_ID = ".$_SESSION["user_ID"]);
+			$req->execute();
+
+
+		}
+
+		public function db_load_faq(){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query=$connexion->prepare("SELECT * FROM faq ");
+			$req->execute();
+
 		}
 
 	}
