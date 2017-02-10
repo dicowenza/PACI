@@ -22,5 +22,5 @@ catch (Exception $e)
 
     $data = $req->fetchAll();
 
-   // header('Location: questionsView.php');
+   header('Location: questionsView.php');
 ?>

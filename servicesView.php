@@ -32,7 +32,7 @@
       if (isset($_SESSION["started"]) && isset($_GET["my_services"]) && $_SESSION["started"] == "true" && $_GET["my_services"] == "true"){
         $req = $bdd->prepare("SELECT * FROM service WHERE service_user_ID = ".$_SESSION["user_ID"]);
       } else {
-        $req = $bdd->prepare("SELECT * FROM service");
+        $req = $bdd->prepare("SELECT * FROM service INNER JOIN user ON user_ID = service_user_ID");
       }
       $req->execute();
       while($row = $req->fetch(PDO::FETCH_ASSOC)) {
@@ -44,8 +44,10 @@
 
             <!-- Modal content-->
             <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title" style="font-size: 23pt ! important;">'.$row["service_title"].'</h4>
+              <div class="modal-header">';
+              if ($_SESSION["user_ID"] == $row["service_user_ID"] && isset($_SESSION["started"]) && $_SESSION["started"] == "true" || (isset($_GET["my_services"])  && $_GET["my_services"] == "true"))
+                  echo '<a style="text-align:left;float:left;" href="deleteService.php?serviceID='.$row["service_ID"].'"><h1  class="glyphicon glyphicon-remove-sign fa-5x"></h1></a>';
+              echo '<h4 class="modal-title" style="text-align:center;font-size: 23pt ! important;">'.$row["service_title"].'</h4>
               </div>
               <div class="modal-body">
                 <p style="font-size: 18pt ! important;">'.$row["service_description"].'</p>
@@ -62,7 +64,6 @@
         <!-- Modal contacter service-->
         <div style="padding-top: 15%" id="'.$row["service_ID"].'" class="modal fade" role="dialog">
           <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
               <div class="modal-header">
@@ -71,10 +72,15 @@
               </div>
               <div class="modal-body">
                 <p style="font-size: 18pt ! important;"><u><b>Que souhaitez vous lui dire ?</b></u><br><br>
-                <textarea style="font-size: 18pt ! important; width:80%;" class="input-xlarge" name="description" rows="5"></textarea>
+                <form id="sendMail" method="post" action="sendMail.php">
+                  <input type="hidden" name="destination" value="jeffrey.seutin@etu.u-bordeaux.fr">
+                  <input type="hidden" name="sender" value="donald@trump.com">
+                  <input type="hidden" name="subject" value="Message pour votre annonce : '.$row["service_title"].'">
+                  <textarea style="font-size: 18pt ! important; width:80%;" class="input-xlarge" name="message" rows="5"></textarea>
+                </form>
               </div>
               <div class="modal-footer">
-                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#addAnswerForm">Répondre</button>
+                <button class="btn btn-success" type="submit" form="sendMail">Envoyer</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
               </div>
             </div>
