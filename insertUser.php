@@ -56,7 +56,7 @@ catch (Exception $e)
 
 include_once ("sendMail.php");
     ?>
-    <p>Un mail a été envoyé sur votre adresse mail, regardez vos mails et cliquez sur le lien pour pouvoir finaliser l'inscritpion.</p>
+    <h1>Un mail a été envoyé sur votre adresse mail, regardez vos mails et cliquez sur le lien pour pouvoir finaliser l'inscritpion.</h1>
 
 </body>
 </html>

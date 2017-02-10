@@ -9,7 +9,6 @@ $headers = 'From: pacidnah@salut.com' . "\r\n" .
 
 mail($to, $subject, $message, $headers);*/
 if ($_POST['type'] == "confirmation"){
-	echo $rand;
 	$to      = $_POST['email'];
 	$subject = "Inscription mon cochon de ".$_POST['pseudo'];
 	$message = "Content-type: text/html; charset=UTF-8; Salut ! tu veux continuer ton inscription? click sur se lien : http://jeffrey.seutin.emi.u-bordeaux.fr/pacidnah/signupConfirmed.php?mail_confirmed=true&id=".$rand;
