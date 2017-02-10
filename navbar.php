@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<nav class="navbar navbar-inverse" style="padding : 10px">
+<nav class="navbar navbar-inverse navbar-toggleable-md" style="padding : 10px">
   <div class="container-fluid">
     <div class="navbar-header">
       <a style="font-size: 20pt ! important;" class="navbar-brand" href="index.php">Pacidnah</a>

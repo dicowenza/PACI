@@ -28,25 +28,41 @@
 
     session_start();
 
-    echo '<div class="form-group">
-        <label style="font-size:15pt;" for="nom">Nom</label>
-        <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" class="form-control" id="nom" value="Cabrel">
-    </div><br>
+    try{
+        $bdd = new PDO('mysql:host=dbserver;dbname=test;charset=utf8', 'jefseutin', 'jefco');
+    }
+    catch (Exception $e){
+        die('Erreur : ' . $e->getMessage());
+    }
 
-    <div class="form-group">
-        <label style="font-size:15pt;" for="nom">Prénom</label>
-        <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" class="form-control" id="nom" value="Francis">
-    </div><br>
+    $req = $bdd->prepare("SELECT * FROM user WHERE user_ID = ".$_SESSION["user_ID"]);
+    $req->execute();
+    while($row = $req->fetch(PDO::FETCH_ASSOC)) {
+      echo '<div class="form-group">
+          <label style="font-size:15pt;" for="nom">Nom</label>
+          <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" class="form-control" id="nom" value="'.$row["user_lastname"].'">
+      </div><br>
 
-    <div class="form-group">
-        <label style="font-size:15pt;" for="nom">Pseudo</label>
-        <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" class="form-control" id="nom" value="'.$_SESSION["pseudo"].'">
-    </div><br>
+      <div class="form-group">
+          <label style="font-size:15pt;" for="nom">Prénom</label>
+          <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" class="form-control" id="nom" value="'.$row["user_firstname"].'">
+      </div><br>
 
-    <div class="form-group">
-        <label style="font-size:15pt;" for="nom">Mot de passe</label>
-        <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" class="form-control" id="nom" value="sisigro">
-    </div><br>';
+      <div class="form-group">
+          <label style="font-size:15pt;" for="nom">Pseudo</label>
+          <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" class="form-control" id="nom" value="'.$row["user_nickname"].'">
+      </div><br>
+
+      <div class="form-group">
+          <label style="font-size:15pt;" for="nom">Adresse email</label>
+          <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" class="form-control" id="nom" value="'.$row["user_email"].'">
+      </div><br>
+
+      <div class="form-group">
+          <label style="font-size:15pt;" for="nom">Mot de passe</label>
+          <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" class="form-control" id="nom" value="'.$row["user_password"].'">
+      </div><br>';
+    }
 
 ?>
 
