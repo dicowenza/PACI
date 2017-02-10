@@ -19,9 +19,10 @@ if ($_POST['type'] == "confirmation"){
 	$to      = $_POST['destination'];
 	$subject = $_POST['subject'];
 	$message = $_POST['message'];
-	$headers = $_POST['sender'] . "\r\n" .
-	    'Reply-To:'.$_POST['sender'] . "\r\n" .
-	    'X-Mailer: PHP/' . phpversion();	
+	$headers = 'From:'.$_POST['sender']."\r\n";
+	$headers .='Reply-To:'.$_POST['sender']."\r\n";
+	$headers .='X-Mailer: PHP/'.phpversion();	
 }
 	mail($to, $subject, $message, $headers);
+
 ?> 

@@ -32,7 +32,7 @@
       if (isset($_SESSION["started"]) && isset($_GET["my_services"]) && $_SESSION["started"] == "true" && $_GET["my_services"] == "true"){
         $req = $bdd->prepare("SELECT * FROM service WHERE service_user_ID = ".$_SESSION["user_ID"]);
       } else {
-        $req = $bdd->prepare("SELECT * FROM service");
+        $req = $bdd->prepare("SELECT * FROM service INNER JOIN user ON user_ID = service_user_id");
       }
       $req->execute();
       while($row = $req->fetch(PDO::FETCH_ASSOC)) {
@@ -62,7 +62,6 @@
         <!-- Modal contacter service-->
         <div style="padding-top: 15%" id="'.$row["service_ID"].'" class="modal fade" role="dialog">
           <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
               <div class="modal-header">
@@ -71,12 +70,15 @@
               </div>
               <div class="modal-body">
                 <p style="font-size: 18pt ! important;"><u><b>Que souhaitez vous lui dire ?</b></u><br><br>
-                <form id="addService" method="post" action="insertService.php">
-                  <textarea style="font-size: 18pt ! important; width:80%;" class="input-xlarge" name="description" rows="5"></textarea>
+                <form id="sendMail" method="post" action="sendMail.php">
+                  <input type="hidden" name="destination" value="jeffrey.seutin@etu.u-bordeaux.fr">
+                  <input type="hidden" name="sender" value="donald@trump.com">
+                  <input type="hidden" name="subject" value="Message pour votre annonce : '.$row["service_title"].'">
+                  <textarea style="font-size: 18pt ! important; width:80%;" class="input-xlarge" name="message" rows="5"></textarea>
                 </form>
               </div>
               <div class="modal-footer">
-                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#addAnswerForm">Envoyer</button>
+                <button class="btn btn-success" type="submit" form="sendMail">Envoyer</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
               </div>
             </div>
