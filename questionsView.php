@@ -48,8 +48,8 @@
           echo ''.$row["faq_question"].'
         </button>
         <!-- Modal -->
-        <div style="padding-top: 15%" id="'.$row["faq_ID"].'" class="modal fade" role="dialog">
-          <div class="modal-dialog">
+        <div style="padding-top: 15%" id="'.$row["faq_ID"].'" class="modal fade " role="dialog">
+          <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -57,9 +57,12 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title" style="font-size: 23pt ! important;">'.$row["faq_question"].'</h4>
               </div>
-              <div class="modal-body">
-                <p style="font-size: 18pt ! important;">'.$row["faq_answer"].'</p>
-              </div>
+              <div class="modal-body">';
+                if($row["faq_answer"] == "")
+                  echo '<p style="font-size: 15pt ! important;"><i>Aucune réponse pour le moment.</i></p>';
+                else
+                  echo '<p style="font-size: 18pt ! important;">'.$row["faq_answer"].'</p>';
+              echo '</div>
               <div class="modal-footer">
                 <button class="btn btn-success" type="button" data-toggle="modal" data-target="#addAnswerForm">Répondre</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
