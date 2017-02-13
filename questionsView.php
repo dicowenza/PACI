@@ -44,7 +44,7 @@
         echo '
         <button align="center" style="width:80%; white-space: normal; margin: 1%; padding : 3%; font-size: 18pt ! important;" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#'.$row["faq_ID"].'">';
           if ($_SESSION["user_ID"] == $row["faq_user_ID"] && isset($_SESSION["started"]) && $_SESSION["started"] == "true" || (isset($_GET["my_questions"])  && $_GET["my_questions"] == "true"))
-            echo '<a style="text-align:left;float:left;" href="deleteService.php?serviceID"><h1 class="glyphicon glyphicon-remove-sign fa-5x"></h1></a>';
+            echo '<a style="text-align:left;float:left;" href="deleteQuestion.php?faqID='.$row["faq_ID"].'"><h1 class="glyphicon glyphicon-remove-sign fa-5x"></h1></a>';
           echo ''.$row["faq_question"].'
         </button>
         <!-- Modal -->
