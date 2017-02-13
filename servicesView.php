@@ -17,7 +17,11 @@
 <body text-align="center">
   <?php include_once ("navbar.php"); ?>
 
-  <div align="center" style="margin-top: 5%">
+  <div align="center">
+    <h1 style="width:80%;padding:2%; background:#00B0FF;color:#37474F" align="center">CONSULTEZ LES SERVICES OU PROPOSEZ LE VOTRE</h1>
+  </div>
+
+  <div align="center">
 
     <?php
 

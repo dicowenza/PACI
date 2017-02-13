@@ -17,10 +17,12 @@
 <body text-align="center">
   <?php include_once ("navbar.php"); ?>
 
-  <h1 align="center">Consulter les questions ou poser la votre si vous ne la voyez pas</h1>
+  <div align="center">
+    <h1 style="width:80%;padding:2%; background:#00E676;color:#37474F" align="center">CONSULTEZ LES QUESTIONS OU POSER LA VOTRE</h1>
+  </div>
 
 
-  <div align="center" style="margin: 15%">
+  <div align="center">
     <?php
 
       try
@@ -39,7 +41,7 @@
       }      $req->execute();
 
       while($row = $req->fetch(PDO::FETCH_ASSOC)) {
-        echo '<button style="white-space: normal; margin: 3%; padding : 3%; font-size: 18pt ! important;" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#'.$row["faq_ID"].'">'.$row["faq_question"].'</button><br/>
+        echo '<button style="width:80%; white-space: normal; margin: 1%; padding : 3%; font-size: 18pt ! important;" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#'.$row["faq_ID"].'">'.$row["faq_question"].'</button>
 
         <!-- Modal -->
         <div style="padding-top: 15%" id="'.$row["faq_ID"].'" class="modal fade" role="dialog">
