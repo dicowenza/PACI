@@ -58,7 +58,7 @@
         $delay = strtotime($row["service_delay"]);
         echo '
         <div id="myModal">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
             <div class="modal-content">
