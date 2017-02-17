@@ -78,6 +78,8 @@ error_reporting(E_ALL);
                   $AswReq->execute();
                   while($asw = $AswReq->fetch(PDO::FETCH_ASSOC)){
                     $AswDate = new DateTime($asw["answer_date"]);
+                    if($asw["answer_user_ID"] == $_SESSION["user_ID"])
+                      echo '<a style="margin-left: 10px;text-align:left;float:left;" href="deleteAnswer.php?faqID='.$row["faq_ID"].'"><h2 class="glyphicon glyphicon-remove-sign fa-5x"></h2></a>';
                     echo '<div style="padding:2%; outline: 1px solid">
                       <p style="font-size: 15pt ! important;">'.$asw["answer_text"].'</p>
                       <p class="modal-title" style="font-size: 13pt ! important;"><i>'.$AswDate->diff($now)->format('Il y a %d jours').' par '.$asw["user_nickname"].'</i></p>
