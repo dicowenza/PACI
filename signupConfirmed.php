@@ -47,7 +47,7 @@ catch (Exception $e)
 
   <div align="center" style="margin-top: 10%">
     <h1 align="center">Confirmation d'inscritpion</h1><br>
-    <form method="post" action="updateUser.php">
+    <form method="post" action="confirmUser.php">
     <input type="text" class="form-control" id="pseudo" name="pseudo" <?php echo'value="'.$row["user_nickname"].'"'; ?> style="width:20%; height:15%; text-align:center; font-size:20pt;">
     <br><br>
     <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" style="width:20%; height:15%; text-align:center; font-size:20pt;">
