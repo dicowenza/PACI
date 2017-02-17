@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (empty($_POST['password']) || $_POST['password'] == 'NULL'){
+if (empty($_POST['password']) || $_POST['password'] == 'NULL' || empty($_POST['nom']) empty($_POST['nom']) empty($_POST['nom']) empty($_POST['nom'])){
     header('Location: index.php');
 }
 try
@@ -19,4 +19,4 @@ catch (Exception $e)
 
     header('Location: login.php')
 
-    ?>
+    ?> 

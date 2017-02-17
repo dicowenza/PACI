@@ -37,7 +37,7 @@
     <br><br>
     <input type="submit" value="Se connecter" class="btn btn-success" style="font-size: 35px ! important; width: 50%; height: 100px;">
     </form>
+        <a style="font-size: 35px ! important;" href="passwordForgotten.php" >mot de passe oublié?</a>
   </div>
-
 </body>
 </html>
