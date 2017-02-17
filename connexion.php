@@ -2,7 +2,6 @@
 session_start();
 if (empty($_POST['login']) || empty($_POST['password']) || $_POST['password'] == 'NULL'){
     header('Location: login.php?empty_fields=true');
-    break;
 }
 
 try
@@ -23,7 +22,6 @@ catch (Exception $e)
 
     if ($req->rowCount() == 0){
         header('Location: login.php?bad_language=true');
-        break; 
     }
 
     $row = $req->fetch(PDO::FETCH_ASSOC);

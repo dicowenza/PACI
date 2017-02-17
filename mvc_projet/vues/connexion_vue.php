@@ -15,7 +15,7 @@
 </script>
 
 <body text-align="center">
-  <?php include_once ("../../navbar.php"); ?>
+  <?php include_once ("navbar.php"); ?>
 
   <?php
   if (isset($_GET["empty_fields"])){
