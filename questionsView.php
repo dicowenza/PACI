@@ -70,10 +70,13 @@
                   echo '<p style="font-size: 15pt ! important;"><i>Aucune réponse pour le moment.</i></p>';
                 else
                   echo '<p style="font-size: 15pt ! important;">'.$row["faq_answer"].'</p>';
-              echo '<textarea id="ta'.$row["faq_ID"].'" style="display:none; font-size: 15pt ! important;" rows="2" class="form-control" placeholder="Répondez à l\'utilisateur ici"></textarea>';
+              echo '<form action="updateAnswer.php" method="post">
+              <input type="textarea" id="answer" name="answer" style="'/*display:none;*/.' font-size: 15pt ! important;" rows="2" class="form-control" placeholder="Répondez à l\'utilisateur ici">
+              <input type="hidden" id=faqID" name="faqID" value="'.$row["faq_ID"].'">';
               echo '</div>
               <div class="modal-footer">
-                <button class="btn btn-success" type="button" onclick="showArea(\'ta'.$row["faq_ID"].'\')">Répondre</button>
+                <input class="btn btn-success" type="submit" value="Répondre">
+                </form>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
               </div>
             </div>
