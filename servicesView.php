@@ -17,30 +17,48 @@
 <body text-align="center">
   <?php include_once ("navbar.php"); ?>
 
-  <div align="center" style="margin-top: 5%">
+  <div align="center">
+    <h1 style="width:80%;padding:2%; background:#00B0FF;color:#37474F" align="center">CONSULTEZ LES SERVICES OU PROPOSEZ LE VOTRE</h1>
+  </div>
+
+  <div align="center">
+    <div class="btn-group">
+      <button style="font-size: 18pt ! important; width: 500px; height: 100px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recherche par catégorie
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu" aria-labelledby="services">
+         <li><a style="font-size: 18pt ! important;" href="servicesView.php">Tous</a></li>
+         <li><a style="font-size: 18pt ! important;" href="servicesView.php?category=Aide à domicile">Aide à domicile</a></li>
+         <li><a style="font-size: 18pt ! important;" href="servicesView.php?category=Soins infirmiers">Soins infirmiers</a></li>
+         <li><a style="font-size: 18pt ! important;" href="servicesView.php?category=Loisirs">Loisirs</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div align="center">
 
     <?php
-
-      try
-      {
+      try{
         $bdd = new PDO('mysql:host=dbserver;dbname=test;charset=utf8', 'jefseutin', 'jefco');
-      }
-      catch (Exception $e)
-      {
+      }catch (Exception $e){
         die('Erreur : ' . $e->getMessage());
       }
       if (isset($_SESSION["started"]) && isset($_GET["my_services"]) && $_SESSION["started"] == "true" && $_GET["my_services"] == "true"){
-        $req = $bdd->prepare("SELECT * FROM service WHERE service_user_ID = ".$_SESSION["user_ID"]);
+        $sql = "SELECT * FROM service WHERE service_user_ID = ".$_SESSION["user_ID"];
+        if(isset($_GET["category"]))
+          $sql .= " AND service_category = '".$_GET["category"]."'";
       } else {
-        $req = $bdd->prepare("SELECT * FROM service INNER JOIN user ON user_ID = service_user_ID");
+        $sql = "SELECT * FROM service INNER JOIN user ON user_ID = service_user_ID";
+        if(isset($_GET["category"]))
+          $sql .= ' WHERE service_category = "'.$_GET["category"].'"';
       }
+      $req = $bdd->prepare($sql);
       $req->execute();
       while($row = $req->fetch(PDO::FETCH_ASSOC)) {
         $date = strtotime($row["service_date"]);
         $delay = strtotime($row["service_delay"]);
         echo '
         <div id="myModal">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -107,9 +125,9 @@
                 <br><ul class="nav nav-list">
                  <li style="font-size: 18pt ! important;" class="nav-header"><u><b>Catégorie</b></u></li><br>
                  <li>                     
-                    <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category">Aide à domicile</label>
-                    <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category">Soins infirmiers</label>
-                    <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category">Loisirs</label> 
+                    <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category" value="Aide à domicile">Aide à domicile</label>
+                    <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category" value="Soins infirmiers">Soins infirmiers</label>
+                    <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category" value="Loisirs">Loisirs</label> 
                  </li><br><br>
                  <li style="font-size: 18pt ! important;" class="nav-header"><u><b>Titre</b></u></li><br>
                  <li><input style="font-size: 18pt ! important; width:80%" class="input-xlarge" type="text" name="title"></li><br><br>

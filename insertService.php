@@ -8,11 +8,12 @@ catch (Exception $e)
 {
         die('Erreur : ' . $e->getMessage());
 }
-	$req = $bdd->prepare("INSERT INTO service (service_user_ID, service_title, service_description, service_date, service_delay) VALUES (:userID, :title, :description, now(), now())");
+	$req = $bdd->prepare("INSERT INTO service (service_user_ID, service_title, service_description, service_category, service_date, service_delay) VALUES (:userID, :title, :description, :category, now(), now())");
     $req->execute(array(
             'userID' => $_SESSION['user_ID'],
             'title' => $_POST['title'],
-            'description' => $_POST['description']
+            'description' => $_POST['description'],
+            'category' => $_POST['category']
 //            'delay' => $_POST['delay']
             ));
 
