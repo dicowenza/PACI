@@ -42,9 +42,9 @@ error_reporting(E_ALL);
       }
 
       if (isset($_SESSION["started"]) && isset($_GET["my_questions"]) && $_SESSION["started"] == "true" && $_GET["my_questions"] == "true"){
-        $req = $bdd->prepare("SELECT * FROM faq WHERE faq_user_ID = ".$_SESSION["user_ID"]);
+        $req = $bdd->prepare("SELECT *, count(answer_ID) AS nbr FROM faq LEFT JOIN answer_faq ON faq_ID = answer_faq_id WHERE faq_user_ID = ".$_SESSION["user_ID"]." GROUP BY faq_ID");
       } else {
-        $req = $bdd->prepare("SELECT *, count(answer_ID) AS nbr FROM `faq` LEFT JOIN answer_faq ON faq_ID = answer_faq_id GROUP BY faq_ID");
+        $req = $bdd->prepare("SELECT *, count(answer_ID) AS nbr FROM faq LEFT JOIN answer_faq ON faq_ID = answer_faq_id GROUP BY faq_ID");
       }
       $req->execute();
 
@@ -79,7 +79,7 @@ error_reporting(E_ALL);
                   while($asw = $AswReq->fetch(PDO::FETCH_ASSOC)){
                     $AswDate = new DateTime($asw["answer_date"]);
                     if($asw["answer_user_ID"] == $_SESSION["user_ID"])
-                      echo '<a style="margin-left: 10px;text-align:left;float:left;" href="deleteAnswer.php?answerID='.$row["answer_ID"].'"><h2 class="glyphicon glyphicon-remove-sign fa-5x"></h2></a>';
+                      echo '<a style="margin-left: 10px;text-align:left;float:left;" href="deleteAnswer.php?answerID='.$asw["answer_ID"].'"><h2 class="glyphicon glyphicon-remove-sign fa-5x"></h2></a>';
                     echo '<div style="padding:2%; outline: 1px solid">
                       <p style="font-size: 15pt ! important;">'.$asw["answer_text"].'</p>
                       <p class="modal-title" style="font-size: 13pt ! important;"><i>'.$AswDate->diff($now)->format('Il y a %d jours').' par '.$asw["user_nickname"].'</i></p>
