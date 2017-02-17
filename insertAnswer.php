@@ -22,6 +22,6 @@ $req->execute();
     print_r($req);
     $data = $req->fetchAll();
     echo 'done';
-    header('Location: questionsViews.php')
+    header('Location: questionsView.php')
 
     ?>
