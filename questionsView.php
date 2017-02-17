@@ -27,11 +27,6 @@
 
   <div align="center">
     <?php
-
-    ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
       try
       {
         $bdd = new PDO('mysql:host=dbserver;dbname=test;charset=utf8', 'jefseutin', 'jefco');
@@ -58,7 +53,7 @@ error_reporting(E_ALL);
           $now = new DateTime();
           
           echo ''.$row["faq_question"].'
-        <br><br><p class="modal-title" style="font-size: 13pt ! important;"><i>'.$date->diff($now)->format('Il y a %d jours').'. Aucune réponse(s)</i></p>
+        <br><br><p class="modal-title" style="font-size: 13pt ! important;"><i>'.$date->diff($now)->format('Il y a %d jours').'. '.$row["nbr"].' réponse(s)</i></p>
         </button>
         <!-- Modal -->
         <div style="padding-top: 15%" id="'.$row["faq_ID"].'" class="modal fade " role="dialog">
@@ -74,12 +69,20 @@ error_reporting(E_ALL);
                 if($row["nbr"] == 0)
                   echo '<p style="font-size: 15pt ! important;"><i>Aucune réponse pour le moment.</i></p>';
                 else{
-                  $AswReq = $bdd->prepare("SELECT answer_faq.*, user_nickname FROM answer_faq LEFT JOIN user on user_ID = answer_user_ID WHERE answer_faq_ID = ".$row["faq_ID"]." GROUP BY answer_ID");
+                  $AswReq = $bdd->prepare("SELECT answer_faq.*, user_nickname, sum(note_status) as nbr FROM answer_faq INNER JOIN user ON user_ID = answer_user_ID LEFT JOIN note ON answer_ID = note_answer_ID WHERE answer_faq_ID = ".$row["faq_ID"]." GROUP BY answer_ID ORDER BY nbr DESC");
                   $AswReq->execute();
                   while($asw = $AswReq->fetch(PDO::FETCH_ASSOC)){
                     $AswDate = new DateTime($asw["answer_date"]);
                     if($asw["answer_user_ID"] == $_SESSION["user_ID"])
                       echo '<a style="margin-left: 10px;text-align:left;float:left;" href="deleteAnswer.php?answerID='.$asw["answer_ID"].'"><h2 class="glyphicon glyphicon-remove-sign fa-5x"></h2></a>';
+                    else{
+                      echo '<div align="center" style="text-align:center;"><div style="display:block;margin-left: 20px;float:left;line-height:38px;">
+                        <a href="insertNote.php?answerID='.$asw["answer_ID"].'&userID='.$_SESSION["user_ID"].'&noteStatus=1"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-up fa-5x"></span></a>
+                        <span style="display:block;font-size: 15pt ! important;">'.(($asw['nbr']=="") ? '0' : $asw['nbr']).'</span>
+                        <a href="insertNote.php?answerID='.$asw["answer_ID"].'&userID='.$_SESSION["user_ID"].'&noteStatus=-1"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-down fa-5x"></span></a>
+                      </div></div>';
+                    } 
+
                     echo '<div style="padding:2%; outline: 1px solid">
                       <p style="font-size: 15pt ! important;">'.$asw["answer_text"].'</p>
                       <p class="modal-title" style="font-size: 13pt ! important;"><i>'.$AswDate->diff($now)->format('Il y a %d jours').' par '.$asw["user_nickname"].'</i></p>
