@@ -9,12 +9,8 @@
 		$db_connexion=new ConnexionServeur();
 		$_SESSION['db_connexion']=$db_connexion;
 	}
-	/*if(isset($_SESSION["load_usr_questions"])){
-		$_SESSION['db_connexion']->db_load_usr_questions();
-	}
-	else*/ $_SESSION['row'] = $_SESSION['db_connexion']->db_load_faq();
+	$_SESSION['row'] = $_SESSION['db_connexion']->db_load_usr_questions();
 
-	print_r(count($_SESSION['row']));
 	header('Location: ../vues/questions_vue.php');
 
 ?>

@@ -22,44 +22,27 @@
 
   <div align="center" style="margin: 15%">
     <?php
-
-      try
-      {
-        $bdd = new PDO('mysql:host=dbserver;dbname=test;charset=utf8', 'jefseutin', 'jefco');
-      }
-      catch (Exception $e)
-      {
-        die('Erreur : ' . $e->getMessage());
-      }
-
-      if (isset($_SESSION["started"]) && isset($_GET["my_questions"]) && $_SESSION["started"] == "true" && $_GET["my_questions"] == "true"){
-        $req = $bdd->prepare("SELECT * FROM faq WHERE faq_user_ID = ".$_SESSION["user_ID"]);
-      } else {
-        $req = $bdd->prepare("SELECT * FROM faq");
-      }      $req->execute();
-
-      while($row = $req->fetch(PDO::FETCH_ASSOC)) {
-        echo '<button style="white-space: normal; margin: 3%; padding : 3%; font-size: 18pt ! important;" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#'.$row["faq_ID"].'">'.$row["faq_question"].'</button><br/>
+      for($i = 0; $i< count($_SESSION['row']); $i++ ){
+        echo '<button style="white-space: normal; margin: 3%; padding : 3%; font-size: 18pt ! important;" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#'.$_SESSION['row'][$i]["faq_ID"].'">'.$_SESSION['row'][$i]["faq_question"].'</button><br/>
 
         <!-- Modal -->
-        <div style="padding-top: 15%" id="'.$row["faq_ID"].'" class="modal fade" role="dialog">
+        <div style="padding-top: 15%" id="'.$_SESSION['row'][$i]["faq_ID"].'" class="modal fade" role="dialog">
           <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" style="font-size: 23pt ! important;">'.$row["faq_question"].'</h4>
+                <h4 class="modal-title" style="font-size: 23pt ! important;">'.$_SESSION['row'][$i]["faq_question"].'</h4>
               </div>
               <div class="modal-body">
-                <p style="font-size: 18pt ! important;">'.$row["faq_answer"].'</p>
+                <p style="font-size: 18pt ! important;">'.$_SESSION['row'][$i]["faq_answer"].'</p>
               </div>
               <div class="modal-footer">
                 <button class="btn btn-success" type="button" data-toggle="modal" data-target="#addAnswerForm">Répondre</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
               </div>
             </div>
-
           </div>
         </div>';
 

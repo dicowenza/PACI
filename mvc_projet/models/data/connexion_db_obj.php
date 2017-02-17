@@ -47,11 +47,15 @@
 		return $row;
 		}
 
-		public function db_load_user_questions(){
+		public function db_load_usr_questions(){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			$query=$connexion->prepare("SELECT * FROM faq WHERE faq_user_ID = ".$_SESSION["user_ID"]);
-			$req->execute();
+			$query->execute();
+			$i = 0;
+			while($row = $query->fetch(PDO::FETCH_ASSOC))
+				$array[$i++] = $row;
+			return $array;
 
 
 		}
@@ -59,8 +63,12 @@
 		public function db_load_faq(){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$query=$connexion->prepare("SELECT * FROM faq ");
-			$req->execute();
+			$query=$connexion->prepare("SELECT * FROM faq");
+			$query->execute();
+			$i = 0;
+			while($row = $query->fetch(PDO::FETCH_ASSOC))
+				$array[$i++] = $row;
+			return $array;
 
 		}
 
