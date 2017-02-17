@@ -28,6 +28,10 @@
   <div align="center">
     <?php
 
+    ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
       try
       {
         $bdd = new PDO('mysql:host=dbserver;dbname=test;charset=utf8', 'jefseutin', 'jefco');
@@ -40,8 +44,9 @@
       if (isset($_SESSION["started"]) && isset($_GET["my_questions"]) && $_SESSION["started"] == "true" && $_GET["my_questions"] == "true"){
         $req = $bdd->prepare("SELECT * FROM faq WHERE faq_user_ID = ".$_SESSION["user_ID"]);
       } else {
-        $req = $bdd->prepare("SELECT * FROM faq");
-      }      $req->execute();
+        $req = $bdd->prepare("SELECT *, count(answer_ID) AS nbr FROM `faq` LEFT JOIN answer_faq ON faq_ID = answer_faq_id GROUP BY faq_ID");
+      }
+      $req->execute();
 
       while($row = $req->fetch(PDO::FETCH_ASSOC)) {
         echo '
@@ -66,11 +71,15 @@
                 <h4 class="modal-title" style="font-size: 23pt ! important;">'.$row["faq_question"].'</h4>
               </div>
               <div class="modal-body">';
-                if($row["faq_answer"] == "")
+                if($row["nbr"] == 0)
                   echo '<p style="font-size: 15pt ! important;"><i>Aucune réponse pour le moment.</i></p>';
-                else
-                  echo '<p style="font-size: 15pt ! important;">'.$row["faq_answer"].'</p>';
-              echo '<form action="updateAnswer.php" method="post">
+                else{
+                  $AswReq = $bdd->prepare("SELECT * FROM answer_faq WHERE answer_faq_id = ".$row["faq_ID"]);
+                  $AswReq->execute();
+                  while($asw = $AswReq->fetch(PDO::FETCH_ASSOC))
+                    echo '<p style="font-size: 15pt ! important;">'.$asw["answer_text"].'</p>';
+                }
+              echo '<form action="insertAnswer.php" method="post">
               <input type="textarea" id="answer" name="answer" style="'/*display:none;*/.' font-size: 15pt ! important;" rows="2" class="form-control" placeholder="Répondez à l\'utilisateur ici">
               <input type="hidden" id=faqID" name="faqID" value="'.$row["faq_ID"].'">';
               echo '</div>
