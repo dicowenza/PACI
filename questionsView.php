@@ -74,13 +74,18 @@ error_reporting(E_ALL);
                 if($row["nbr"] == 0)
                   echo '<p style="font-size: 15pt ! important;"><i>Aucune réponse pour le moment.</i></p>';
                 else{
-                  $AswReq = $bdd->prepare("SELECT * FROM answer_faq WHERE answer_faq_id = ".$row["faq_ID"]);
+                  $AswReq = $bdd->prepare("SELECT answer_faq.*, user_nickname FROM answer_faq LEFT JOIN user on user_ID = answer_user_ID WHERE answer_faq_ID = ".$row["faq_ID"]." GROUP BY answer_ID");
                   $AswReq->execute();
-                  while($asw = $AswReq->fetch(PDO::FETCH_ASSOC))
-                    echo '<p style="font-size: 15pt ! important;">'.$asw["answer_text"].'</p>';
+                  while($asw = $AswReq->fetch(PDO::FETCH_ASSOC)){
+                    $AswDate = new DateTime($asw["answer_date"]);
+                    echo '<div style="padding:2%; outline: 1px solid">
+                      <p style="font-size: 15pt ! important;">'.$asw["answer_text"].'</p>
+                      <p class="modal-title" style="font-size: 13pt ! important;"><i>'.$AswDate->diff($now)->format('Il y a %d jours').' par '.$asw["user_nickname"].'</i></p>
+                    </div><br>';
+                  }
                 }
               echo '<form action="insertAnswer.php" method="post">
-              <input type="textarea" id="answer" name="answer" style="'/*display:none;*/.' font-size: 15pt ! important;" rows="2" class="form-control" placeholder="Répondez à l\'utilisateur ici">
+              <textarea id="answer" name="answer" style="'/*display:none;*/.' font-size: 15pt ! important;" rows="2" class="form-control" placeholder="Répondez à l\'utilisateur ici"></textarea>
               <input type="hidden" id=faqID" name="faqID" value="'.$row["faq_ID"].'">';
               echo '</div>
               <div class="modal-footer">
