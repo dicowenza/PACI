@@ -16,6 +16,6 @@
 	#sinon
 	$_SESSION["started"]='true';
 	$_SESSION["pseudo"]=$row['user_nickname'];
-	header('Location: ../../index.php');
+	header('Location: ../vues/test_index.php');
 
 ?>
