@@ -12,9 +12,11 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-  function showArea(identifiant) {
-   document.getElementById(identifiant).style.display = "block";
-  }
+
+function countChars(e, counter) {
+  document.getElementById("charCounter" + counter).innerHTML = "Reste " + (500 - e.value.length) + " caracteres";
+}  
+
 </script>
 
 <body text-align="center">
@@ -24,15 +26,12 @@
     <h1 style="width:80%;padding:2%; background:#00E676;color:#37474F" align="center">CONSULTEZ LES QUESTIONS OU POSER LA VOTRE</h1>
   </div>
 
-
   <div align="center">
     <?php
-      try
-      {
+      try{
         $bdd = new PDO('mysql:host=dbserver;dbname=test;charset=utf8', 'jefseutin', 'jefco');
       }
-      catch (Exception $e)
-      {
+      catch (Exception $e){
         die('Erreur : ' . $e->getMessage());
       }
 
@@ -73,15 +72,17 @@
                   $AswReq->execute();
                   while($asw = $AswReq->fetch(PDO::FETCH_ASSOC)){
                     $AswDate = new DateTime($asw["answer_date"]);
-                    if($asw["answer_user_ID"] == $_SESSION["user_ID"])
-                      echo '<a style="margin-left: 10px;text-align:left;float:left;" href="deleteAnswer.php?answerID='.$asw["answer_ID"].'"><h2 class="glyphicon glyphicon-remove-sign fa-5x"></h2></a>';
-                    else{
-                      echo '<div align="center" style="text-align:center;"><div style="display:block;margin-left: 20px;float:left;line-height:38px;">
-                        <a href="insertNote.php?answerID='.$asw["answer_ID"].'&userID='.$_SESSION["user_ID"].'&noteStatus=1"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-up fa-5x"></span></a>
-                        <span style="display:block;font-size: 15pt ! important;">'.(($asw['nbr']=="") ? '0' : $asw['nbr']).'</span>
-                        <a href="insertNote.php?answerID='.$asw["answer_ID"].'&userID='.$_SESSION["user_ID"].'&noteStatus=-1"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-down fa-5x"></span></a>
-                      </div></div>';
-                    } 
+                    if(isset($_SESSION["started"]) && $_SESSION["started"] == "true"){
+                      if($asw["answer_user_ID"] == $_SESSION["user_ID"])
+                        echo '<a style="margin-left: 10px;text-align:left;float:left;" href="deleteAnswer.php?answerID='.$asw["answer_ID"].'"><h2 class="glyphicon glyphicon-remove-sign fa-5x"></h2></a>';
+                      else{
+                        echo '<div align="center" style="text-align:center;"><div style="display:block;margin-left: 20px;float:left;line-height:38px;">
+                          <a href="insertNote.php?answerID='.$asw["answer_ID"].'&userID='.$_SESSION["user_ID"].'&noteStatus=1"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-up fa-5x"></span></a>
+                          <span style="display:block;font-size: 15pt ! important;">'.(($asw['nbr']=="") ? '0' : $asw['nbr']).'</span>
+                          <a href="insertNote.php?answerID='.$asw["answer_ID"].'&userID='.$_SESSION["user_ID"].'&noteStatus=-1"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-down fa-5x"></span></a>
+                        </div></div>';
+                      }
+                    }
 
                     echo '<div style="padding:2%; outline: 1px solid">
                       <p style="font-size: 15pt ! important;">'.$asw["answer_text"].'</p>
@@ -90,7 +91,8 @@
                   }
                 }
               echo '<form action="insertAnswer.php" method="post">
-              <textarea id="answer" name="answer" style="'/*display:none;*/.' font-size: 15pt ! important;" rows="2" class="form-control" placeholder="Répondez à l\'utilisateur ici"></textarea>
+              <textarea id="areaAnswer" name="answer" style="font-size: 15pt ! important;" rows="2" maxlength="500" class="form-control" onKeyUp="countChars(this, '.$row["faq_ID"].')" placeholder="Répondez à l\'utilisateur ici" ></textarea>
+              <h5 id="charCounter'.$row["faq_ID"].'">500 caracteres</h5>
               <input type="hidden" id=faqID" name="faqID" value="'.$row["faq_ID"].'">';
               echo '</div>
               <div class="modal-footer">
