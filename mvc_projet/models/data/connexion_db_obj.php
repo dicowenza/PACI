@@ -72,5 +72,19 @@
 
 		}
 
+		public function insert_question_faq($user_ID, $question){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query = $connexion->prepare("INSERT INTO faq (faq_user_ID, faq_question, faq_answer, faq_date) VALUES (:userID, :question, :answer, now())");
+    		$query->execute(array(
+            'userID' => $user_ID,
+            'question' => $question,
+            'answer' => "Aucune réponse disponible pour le moment!"
+            ));
+			echo 'salut';
+    		//$data = $query->fetchAll();
+
+		}
+
 	}
 ?>

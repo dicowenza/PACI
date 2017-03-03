@@ -89,7 +89,7 @@
           </div>
           <div class="modal-body">
              <div>
-               <form class="addQuestion" method="post" action="insertQuestion.php">
+               <form class="addQuestion" method="post" action="../controleurs/insertQuestion_controleur.php">
                <fieldset>
                 <br><ul class="nav nav-list">
                  <br><br>
