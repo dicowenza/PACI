@@ -22,8 +22,8 @@
   </div>
 
   <div align="center">
-    <div class="btn-group">
-      <button style="font-size: 18pt ! important; width: 500px; height: 100px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recherche par catégorie
+    <div style="width:80%" class="btn-group">
+      <button style="font-size: 18pt ! important; width: 100%; height: 100px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recherche par catégorie
       <span class="caret"></span></button>
       <ul class="dropdown-menu" aria-labelledby="services">
          <li><a style="font-size: 18pt ! important;" href="servicesView.php">Tous</a></li>
@@ -58,7 +58,7 @@
         $delay = strtotime($row["service_delay"]);
         echo '
         <div id="myModal">
-          <div class="modal-dialog modal-lg">
+          <div style="width:80%" class="modal-dialog modal-lg">
 
             <!-- Modal content-->
             <div class="modal-content">

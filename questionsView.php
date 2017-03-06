@@ -52,7 +52,7 @@ function countChars(e, counter) {
           $now = new DateTime();
           
           echo ''.$row["faq_question"].'
-        <br><br><p class="modal-title" style="font-size: 13pt ! important;"><i>'.$date->diff($now)->format('Il y a %d jours').'. '.$row["nbr"].' réponse(s)</i></p>
+        <br><br><p class="modal-title" style="font-size: 13pt ! important;"><i>'.$date->diff($now)->format('Il y a %d jours').(($row["nbr"] > 0) ? '. <b>' : '. ').$row["nbr"].' réponse(s)</b></i></p>
         </button>
         <!-- Modal -->
         <div style="padding-top: 15%" id="'.$row["faq_ID"].'" class="modal fade " role="dialog">
