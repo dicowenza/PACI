@@ -55,7 +55,7 @@ function countChars(e, counter) {
         <br><br><p class="modal-title" style="font-size: 13pt ! important;"><i>'.$date->diff($now)->format('Il y a %d jours').(($row["nbr"] > 0) ? '. <b>' : '. ').$row["nbr"].' réponse(s)</b></i></p>
         </button>
         <!-- Modal -->
-        <div style="padding-top: 15%" id="'.$row["faq_ID"].'" class="modal fade " role="dialog">
+        <div style="padding-top: 5%" id="'.$row["faq_ID"].'" class="modal fade " role="dialog">
           <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
@@ -72,17 +72,18 @@ function countChars(e, counter) {
                   $AswReq->execute();
                   while($asw = $AswReq->fetch(PDO::FETCH_ASSOC)){
                     $AswDate = new DateTime($asw["answer_date"]);
+                    $logd = 1;
                     if(isset($_SESSION["started"]) && $_SESSION["started"] == "true"){
                       if($asw["answer_user_ID"] == $_SESSION["user_ID"])
                         echo '<a style="margin-left: 10px;text-align:left;float:left;" href="deleteAnswer.php?answerID='.$asw["answer_ID"].'"><h2 class="glyphicon glyphicon-remove-sign fa-5x"></h2></a>';
-                      else{
-                        echo '<div align="center" style="text-align:center;"><div style="display:block;margin-left: 20px;float:left;line-height:38px;">
-                          <a href="insertNote.php?answerID='.$asw["answer_ID"].'&userID='.$_SESSION["user_ID"].'&noteStatus=1"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-up fa-5x"></span></a>
-                          <span style="display:block;font-size: 15pt ! important;">'.(($asw['nbr']=="") ? '0' : $asw['nbr']).'</span>
-                          <a href="insertNote.php?answerID='.$asw["answer_ID"].'&userID='.$_SESSION["user_ID"].'&noteStatus=-1"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-down fa-5x"></span></a>
-                        </div></div>';
-                      }
-                    }
+                    }else $logd = 0;
+                    
+                    echo '<div align="center" style="text-align:center;"><div style="display:block;margin-left: 20px;float:left;line-height:38px;">
+                      <a href="'.(($logd == 0) ? 'login.php' : ('insertNote.php?answerID='.$asw["answer_ID"].'&userID='.$_SESSION["user_ID"].'&noteStatus=1')) .'"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-up fa-5x"></span></a>
+                      <span style="display:block;font-size: 15pt ! important;">'.(($asw['nbr']=="") ? '0' : $asw['nbr']).'</span>
+                      <a href="'.(($logd == 0) ? 'login.php' : ('insertNote.php?answerID='.$asw["answer_ID"].'&userID='.$_SESSION["user_ID"].'&noteStatus=-1')) .'"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-down fa-5x"></span></a>
+                    </div></div>';
+
 
                     echo '<div style="padding:2%; outline: 1px solid">
                       <p style="font-size: 15pt ! important;">'.$asw["answer_text"].'</p>
