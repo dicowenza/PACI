@@ -72,6 +72,19 @@
 
 		}
 
+		public function db_load_usr_services(){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query=$connexion->prepare("SELECT * FROM service WHERE service_user_ID = ".$_SESSION["user_ID"]);
+			$query->execute();
+			$i = 0;
+			while($row = $query->fetch(PDO::FETCH_ASSOC))
+				$array[$i++] = $row;
+			return $array;
+
+
+		}
+
 		public function db_load_services(){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -106,7 +119,20 @@
             'question' => $question,
             'answer' => "Aucune réponse disponible pour le moment!"
             ));
-			echo 'salut';
+    		//$data = $query->fetchAll();
+
+		}
+
+		public function insert_service_faq($user_ID, $title, $description, $category){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query = $connexion->prepare("INSERT INTO service (service_user_ID, service_title, service_description, service_category, service_date, service_delay) VALUES (:userID, :title, :description, :category, now(), now())");
+    		$query->execute(array(
+            'userID' => $user_ID,
+            'title' => $title,
+            'description' => $description,
+            'category' => $category
+            ));
     		//$data = $query->fetchAll();
 
 		}

@@ -114,7 +114,7 @@
           </div>
           <div class="modal-body">
              <div>
-               <form id="addService" method="post" action="insertService.php">
+               <form id="addService" method="post" action="../controleurs/insertService_controleur.php">
                <fieldset>
                 <br><ul class="nav nav-list">
                  <li style="font-size: 18pt ! important;" class="nav-header"><u><b>Catégorie</b></u></li><br>
