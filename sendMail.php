@@ -10,8 +10,8 @@ $headers = 'From: pacidnah@salut.com' . "\r\n" .
 mail($to, $subject, $message, $headers);*/
 if ($_POST['type'] == "confirmation"){
 	$to      = $_POST['email'];
-	$subject = "Inscription mon cochon de ".$_POST['pseudo'];
-	$message = "Content-type: text/html; charset=UTF-8; Salut ! tu veux continuer ton inscription? click sur se lien : http://okan.soyturk.emi.u-bordeaux.fr/pacidnah/signupConfirmed.php?mail_confirmed=true&id=".$rand;
+	$subject = "Inscription Pacidnah de ".$_POST['pseudo'];
+	$message = "Bonjour et merci pour votre inscription. Pour la finaliser, veuillez cliquer sur ce lien : http://okan.soyturk.emi.u-bordeaux.fr/pacidnah/signupConfirmed.php?mail_confirmed=true&id=".$rand;
 	$headers = 'From: webmaster@example.com' . "\r\n" .
      'Reply-To: webmaster@example.com' . "\r\n" .
      'X-Mailer: PHP/' . phpversion();

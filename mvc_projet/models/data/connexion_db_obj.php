@@ -72,6 +72,31 @@
 
 		}
 
+		public function db_load_services(){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query=$connexion->prepare("SELECT * FROM service");
+			$query->execute();
+			$i = 0;
+			while($row = $query->fetch(PDO::FETCH_ASSOC))
+				$array[$i++] = $row;
+			return $array;
+
+		}
+
+		public function db_load_services_by_cat($category){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query=$connexion->prepare("SELECT * FROM service WHERE service_category = '".$category."'");
+			$query->execute();
+			$i = 0;
+			while($row = $query->fetch(PDO::FETCH_ASSOC))
+				$array[$i++] = $row;
+			print_r($query);
+			return $array;
+
+		}
+
 		public function insert_question_faq($user_ID, $question){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
