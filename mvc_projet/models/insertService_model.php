@@ -13,5 +13,5 @@
 
 	$_SESSION['db_connexion']->insert_service_faq($_SESSION["user_ID"], $_SESSION["userServiceTitle"], $_SESSION["userService"], $_SESSION["userServiceCategory"]);
 
-    header('Location: ../vues/service_vue.php');
+    header('Location: ../vues/gupnp_service_notify(service, name, type, value)_vue.php');
 ?>

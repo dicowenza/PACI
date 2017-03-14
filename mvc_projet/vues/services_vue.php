@@ -37,16 +37,6 @@
   <div align="center">
 
     <?php
-      /*
-      if (isset($_SESSION["started"]) && isset($_GET["my_services"]) && $_SESSION["started"] == "true" && $_GET["my_services"] == "true"){
-        $sql = "SELECT * FROM service WHERE service_user_ID = ".$_SESSION["user_ID"];
-        if(isset($_GET["category"]))
-          $sql .= " AND service_category = '".$_GET["category"]."'";
-      } else {
-        $sql = "SELECT * FROM service INNER JOIN user ON user_ID = service_user_ID";
-        if(isset($_GET["category"]))
-          $sql .= ' WHERE service_category = "'.$_GET["category"].'"';
-      }*/
       for($i = 0; $i< count($_SESSION['row']); $i++ ){
         $date = strtotime($_SESSION['row'][$i]["service_date"]);
         $delay = strtotime($_SESSION['row'][$i]["service_delay"]);

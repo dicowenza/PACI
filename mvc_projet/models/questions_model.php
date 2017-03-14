@@ -12,9 +12,19 @@
 	/*if(isset($_SESSION["load_usr_questions"])){
 		$_SESSION['db_connexion']->db_load_usr_questions();
 	}
-	else*/ $_SESSION['row'] = $_SESSION['db_connexion']->db_load_faq();
+	else*/ 	$_SESSION['row'] = $_SESSION['db_connexion']->db_load_faq();
 
-	print_r(count($_SESSION['row']));
+			for($i = 0; $i< count($_SESSION['row']); $i++ ){
+		   		//echo '<br>';
+		   		$_SESSION['faq_answers'][$i] = $_SESSION['db_connexion']->db_load_faq_answers($_SESSION['row'][$i]["faq_ID"]);
+		   		//print_r($_SESSION['faq_answers'][$i]);
+				for($j = 0; $j< count($_SESSION['faq_answers'][$i]); $j++ ){
+					echo '<br>';
+					print_r($_SESSION['faq_answers'][$i][$j]['nbr']);
+					//print_r(count($_SESSION['faq_answers'][$i]));
+				}
+		   	}
+
 	header('Location: ../vues/questions_vue.php');
 
 ?>
