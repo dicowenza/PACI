@@ -19,7 +19,7 @@ if ($_POST['type'] == "confirmation"){
 } else if ($_POST['type'] == "passwordForgotten"){
 	$to      = $row['user_email'];
 	$subject = "Validation du nouveau mot de passe, ".$row['user_nickname'];
-	$message = "Content-type: text/html; charset=UTF-8; Salut ! tu as perdu ton mot de passe? tant pis pour toi! clique ici pour pouvoir en rentrer un nouveau!";
+	$message = "Content-type: text/html; charset=UTF-8; Vous avez demandé un renouvelement de mot de passe. Cliquez sur le lien suivant pour valider le nouveau.";
 	$headers = 'From: webmaster@example.com' . "\r\n" .
      'Reply-To: webmaster@example.com' . "\r\n" .
      'X-Mailer: PHP/' . phpversion();

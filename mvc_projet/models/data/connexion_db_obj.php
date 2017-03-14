@@ -47,6 +47,18 @@
 		return $row;
 		}
 
+		public function db_load_user_data(){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query=$connexion->prepare("SELECT * FROM user WHERE user_ID = ".$_SESSION["user_ID"]);
+			$query->execute();
+			$i = 0;
+			while($row = $query->fetch(PDO::FETCH_ASSOC))
+				$array[$i++] = $row;
+			return $array;
+
+		}
+
 		public function db_load_usr_questions(){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
