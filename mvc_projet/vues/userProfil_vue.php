@@ -26,30 +26,30 @@
 
   <?php
      for($i = 0; $i< count($_SESSION['row']); $i++ ){
-      echo '<form action="updateUser.php" method="post">
+      echo '<form action="../controleurs/update_user_profil_controleur.php" method="post">
       <div class="form-group">
           <label style="font-size:15pt;" for="nom">Nom</label>
-          <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" class="form-control" id="nom" value="'.$_SESSION['row'][$i]["user_lastname"].'">
+          <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" name="lastname" class="form-control" id="nom" value="'.$_SESSION['row'][$i]["user_lastname"].'">
       </div><br>
 
       <div class="form-group">
           <label style="font-size:15pt;" for="prenom">Prénom</label>
-          <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" class="form-control" id="prenom" value="'.$_SESSION['row'][$i]["user_firstname"].'">
+          <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" name="firstname" class="form-control" id="prenom" value="'.$_SESSION['row'][$i]["user_firstname"].'">
       </div><br>
 
       <div class="form-group">
           <label style="font-size:15pt;" for="pseudo">Pseudo</label>
-          <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" class="form-control" id="pseudo" value="'.$_SESSION['row'][$i]["user_nickname"].'">
+          <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" name="nickname" class="form-control" id="pseudo" value="'.$_SESSION['row'][$i]["user_nickname"].'">
       </div><br>
 
       <div class="form-group">
-          <label style="font-size:15pt;" for="email">Adresse email</label>
-          <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" class="form-control" id="email" value="'.$_SESSION['row'][$i]["user_email"].'">
+          <label style="font-size:15pt;" for="mail">Adresse email</label>
+          <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" name="email" class="form-control" id="mail" value="'.$_SESSION['row'][$i]["user_email"].'">
       </div><br>
 
       <div class="form-group">
-          <label style="font-size:15pt;" for="password">Mot de passe</label>
-          <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" class="form-control" id="password" value="'.$_SESSION['row'][$i]["user_password"].'">
+          <label style="font-size:15pt;" for="mdp">Mot de passe</label>
+          <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" name="password" class="form-control" id="mdp" value="'.$_SESSION['row'][$i]["user_password"].'">
       </div><br>
       <div>
       <input type="submit" value="Valider" class="btn btn-success" style="font-size: 35px ! important; width: 200px; height: 75px; margin: 10px;">
