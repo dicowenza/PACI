@@ -26,16 +26,19 @@
 			}
 		}
 
-		public function inscription($nom,$prenom,$password,$pseudo,$mail){
+		public function inscription($nom,$prenom,$pseudo,$mail,$rand){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$query="INSERT  INTO Utilisateurs ('id_user','nom', 'prenom', 'password','pseudo','mail') VALUES('NULL','$nom','$prenom','$password','$pseudo','$mail')";
-			try{
-				$connexion->exec($query);
-			}
-			catch(PDOException $e){
-				echo " erreur d'inscription ERR_MSG:".$e->getMessage();
-			}
+				$req = $connexion->prepare("INSERT INTO user (user_firstname, user_lastname, user_password, user_nickname, user_email, user_id_confirm) VALUES (:prenom, :nom, :password, :pseudo, :email, :id_confirm)");
+        	$req->execute(array(
+            	'nom' => $nom, 
+            	'prenom' => $prenom,
+            	'pseudo' => $pseudo,
+            	'password' => 'NULL',
+            	'email' => $mail,
+            	'id_confirm' => $rand
+            ));
+            echo 'done';
 		}
 
 		public function login($usr_log){

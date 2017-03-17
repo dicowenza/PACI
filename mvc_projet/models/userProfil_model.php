@@ -9,5 +9,4 @@
 		$_SESSION['db_connexion']=$db_connexion;
 	}
 		$_SESSION['row'] = $_SESSION['db_connexion']->db_load_user_data();
-		echo 'je suis la';
 ?>
