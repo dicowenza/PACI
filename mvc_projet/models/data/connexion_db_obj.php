@@ -164,6 +164,18 @@
 
 		}
 
+		public function final_insertion_user($id, $pseudo, $password){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query = $connexion->prepare("UPDATE user SET user_password = :password, user_nickname = :pseudo, user_id_confirm = 0 WHERE user_id_confirm=:id");
+			$query->execute(array(
+            'id' => $id,
+            'pseudo' => $pseudo,
+            'password' => $password
+            ));
+
+		}
+
 		public function update_user_profil($userID, $lastname, $firstname, $nickname, $email, $password){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);

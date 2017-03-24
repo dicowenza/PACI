@@ -11,7 +11,6 @@
 	#renvoie de la page s'il y'a un champ vide 
 	if (empty($nom) || empty($prenom) || empty($pseudo) || empty($mail)){
 		//header('Location: signup.php?empty_fields=true');
-		echo 'cici';
 	}
 	#sinon ajout du nouvel utilisateur
 	include_once("../models/inscription_model.php");

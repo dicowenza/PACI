@@ -15,6 +15,6 @@
 	$_SESSION['db_connexion']->inscription($nom,$prenom,$pseudo,$mail,$rand);
  
 	include_once("sendMail_model.php");
-	
+
  	include_once("../controleurs/finalisationInscription_controleur.php");
 ?>

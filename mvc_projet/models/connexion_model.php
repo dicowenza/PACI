@@ -17,6 +17,6 @@
 	$_SESSION["started"]='true';
 	$_SESSION["user_ID"]=$row['user_ID'];
 	$_SESSION["pseudo"]=$row['user_nickname'];
-	header('Location: ../vues/test_index.php');
+	header('Location: ../vues/index.php');
 
 ?>
