@@ -31,11 +31,11 @@
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 				$req = $connexion->prepare("INSERT INTO user (user_firstname, user_lastname, user_password, user_nickname, user_email, user_id_confirm) VALUES (:prenom, :nom, :password, :pseudo, :email, :id_confirm)");
         	$req->execute(array(
-            	'nom' => $nom, 
-            	'prenom' => $prenom,
-            	'pseudo' => $pseudo,
+            	'nom' => utf8_decode($nom), 
+            	'prenom' => utf8_decode($prenom),
+            	'pseudo' => utf8_decode($pseudo),
             	'password' => 'NULL',
-            	'email' => $mail,
+            	'email' => utf8_decode($mail),
             	'id_confirm' => $rand
             ));
             echo 'done';
@@ -143,7 +143,7 @@
 			$query = $connexion->prepare("INSERT INTO faq (faq_user_ID, faq_question, faq_answer, faq_date) VALUES (:userID, :question, :answer, now())");
     		$query->execute(array(
             'userID' => $user_ID,
-            'question' => $question,
+            'question' => utf8_decode($question),
             'answer' => "Aucune réponse disponible pour le moment!"
             ));
     		//$data = $query->fetchAll();
@@ -156,9 +156,9 @@
 			$query = $connexion->prepare("INSERT INTO service (service_user_ID, service_title, service_description, service_category, service_date, service_delay) VALUES (:userID, :title, :description, :category, now(), now())");
     		$query->execute(array(
             'userID' => $user_ID,
-            'title' => $title,
-            'description' => $description,
-            'category' => $category
+            'title' => utf8_decode($title),
+            'description' => utf8_decode($description),
+            'category' => utf8_decode($category)
             ));
     		//$data = $query->fetchAll();
 
@@ -170,8 +170,8 @@
 			$query = $connexion->prepare("UPDATE user SET user_password = :password, user_nickname = :pseudo, user_id_confirm = 0 WHERE user_id_confirm=:id");
 			$query->execute(array(
             'id' => $id,
-            'pseudo' => $pseudo,
-            'password' => $password
+            'pseudo' => utf8_decode($pseudo),
+            'password' => utf8_decode($password)
             ));
 
 		}
@@ -182,10 +182,10 @@
 			$query = $connexion->prepare("UPDATE user SET user_firstname = :firstname, user_lastname = :lastname, user_nickname = :nickname, user_password = :password, user_email = :email WHERE user_ID = :userID");
     		$query->execute(array(
             'userID' => $userID,
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'nickname' => $nickname,
-            'password' => $password,
+            'firstname' => utf8_decode($firstname),
+            'lastname' => utf8_decode($lastname),
+            'nickname' => utf8_decode($nickname),
+            'password' => utf8_decode($password),
             'email' => $email
             ));
     		//$data = $query->fetchAll();
