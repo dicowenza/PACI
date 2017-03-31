@@ -164,6 +164,17 @@
 
 		}
 
+		public function insert_answer_faq($user_ID, $faqID, $answer){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query = $connexion->prepare('INSERT INTO answer_faq (answer_text, answer_faq_ID, answer_user_ID, answer_note, answer_date) VALUES (:answer,:faqID, :userID, 0, now())');
+    		$query->execute(array(
+    		'answer' => $answer,
+    		'faqID' => $faqID,
+            'userID' => $user_ID
+            ));
+		}
+
 		public function final_insertion_user($id, $pseudo, $password){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
