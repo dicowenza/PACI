@@ -175,6 +175,30 @@
             ));
 		}
 
+		public function search_questioner_faq($faqID){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query=$connexion->prepare("SELECT DISTINCT user_nickname, user_email FROM faq INNER JOIN user ON user.user_ID = faq.faq_user_ID WHERE faq_ID = ".$faqID);
+			$query->execute();
+			$i = 0;
+			while($row = $query->fetch(PDO::FETCH_ASSOC))
+				$array[$i++] = $row;
+			return $array;
+
+		}
+
+		public function search_answerer_faq($userID){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query=$connexion->prepare("SELECT DISTINCT user_nickname FROM user WHERE user_ID = ".$userID);
+			$query->execute();
+			$i = 0;
+			while($row = $query->fetch(PDO::FETCH_ASSOC))
+				$array[$i++] = $row;
+			return $array[0]["user_nickname"];
+
+		}
+
 		public function final_insertion_user($id, $pseudo, $password){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
