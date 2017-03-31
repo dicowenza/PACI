@@ -75,7 +75,7 @@ function countChars(e, counter) {
                     </div><br>';
                   }
                 }
-              echo '<form action="insertAnswer.php" method="post">
+              echo '<form action="../controleurs/insertAnswer_controleur.php" method="post">
               <textarea id="areaAnswer" name="answer" style="font-size: 15pt ! important;" rows="2" maxlength="500" class="form-control" onKeyUp="countChars(this, '.$_SESSION['row'][$i]["faq_ID"].')" placeholder="Répondez à l\'utilisateur ici" ></textarea>
               <h5 id="charCounter'.$_SESSION['row'][$i]["faq_ID"].'">500 caracteres</h5>
               <input type="hidden" id=faqID" name="faqID" value="'.$_SESSION['row'][$i]["faq_ID"].'">';
