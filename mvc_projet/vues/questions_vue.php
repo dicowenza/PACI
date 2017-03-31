@@ -37,7 +37,7 @@ function countChars(e, counter) {
           $date = new DateTime($_SESSION['row'][$i]["faq_date"]);
           $now = new DateTime();
           
-         echo ''.$_SESSION['row'][$i]["faq_question"].'
+         echo ''.utf8_encode($_SESSION['row'][$i]["faq_question"]).'
         <br><br><p class="modal-title" style="font-size: 13pt ! important;"><i>'.$date->diff($now)->format('Il y a %d jours').(($_SESSION['row'][$i]["nbr"] > 0) ? '. <b>' : '. ').$_SESSION['row'][$i]["nbr"].' réponse(s)</b></i></p>
         </button>
         <!-- Modal -->
@@ -48,7 +48,7 @@ function countChars(e, counter) {
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" style="font-size: 23pt ! important;">'.$_SESSION['row'][$i]["faq_question"].'</h4>
+                <h4 class="modal-title" style="font-size: 23pt ! important;">'.utf8_encode($_SESSION['row'][$i]["faq_question"]).'</h4>
               </div>
               <div class="modal-body">';
                 if($_SESSION['row'][$i]["nbr"] == 0)
@@ -70,7 +70,7 @@ function countChars(e, counter) {
 
 
                     echo '<div style="padding:2%; outline: 1px solid">
-                      <p style="font-size: 15pt ! important;">'.$_SESSION['faq_answers'][$i][$j]["answer_text"].'</p>
+                      <p style="font-size: 15pt ! important;">'.utf8_encode($_SESSION['faq_answers'][$i][$j]["answer_text"]).'</p>
                       <p class="modal-title" style="font-size: 13pt ! important;"><i>'.$AswDate->diff($now)->format('Il y a %d jours').' par '.$_SESSION['faq_answers'][$i][$j]["user_nickname"].'</i></p>
                     </div><br>';
                   }
