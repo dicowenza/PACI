@@ -16,6 +16,14 @@ if ($type == "confirmation"){
      'Reply-To: webmaster@example.com' . "\r\n" .
      'X-Mailer: PHP/' . phpversion();
 
+} else if ($type == "answerQuestion"){
+	$to      = $mail;
+	$subject = "On a répondu à une de vos question, ".$pseudo;
+	$message = "Content-type: text/html; charset=UTF-8; Vous avez demandé un renouvelement de mot de passe. Cliquez sur le lien suivant pour valider le nouveau.";
+	$headers = 'From: webmaster@example.com' . "\r\n" .
+     'Reply-To: webmaster@example.com' . "\r\n" .
+     'X-Mailer: PHP/' . phpversion();
+
 } else {
 	$to      = $destination;
 	$subject = $subject;

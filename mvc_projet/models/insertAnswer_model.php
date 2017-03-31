@@ -13,6 +13,6 @@
 
 	$_SESSION['db_connexion']->insert_answer_faq($_SESSION["user_ID"], $_SESSION["faqID"], $_SESSION["text_faq"]);
 
-    header("Location: ../vues/questions_vue.php");
+    header("Location: ../controleurs/questions_controleur.php");
 
 ?>
