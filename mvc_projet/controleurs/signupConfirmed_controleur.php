@@ -1,5 +1,5 @@
  <?php
- 	echo "c ".$_POST["pseudo"]." et ".$_POST["password"]." vtt";
+
 	if (empty($_POST["pseudo"]) || empty($_POST["password"])){
 	    $message='Remplissez tous les champs svp';
 	    echo '<script type="text/javascript">window.alert("'.$message.'");</script>';

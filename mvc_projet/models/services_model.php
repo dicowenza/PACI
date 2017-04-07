@@ -18,6 +18,7 @@
 	else
 		$_SESSION['row'] = $_SESSION['db_connexion']->db_load_services();
 
+		print_r($_SESSION["row"][0]["user_email"]);
 		header('Location: ../vues/services_vue.php');
 
 ?>
