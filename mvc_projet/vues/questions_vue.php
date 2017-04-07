@@ -31,7 +31,7 @@ function countChars(e, counter) {
       for($i = 0; $i< count($_SESSION['row']); $i++ ){
         echo '
         <button align="center" style="width:80%; white-space: normal; margin: 1%; padding : 3%; font-size: 18pt ! important;" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#'.$_SESSION['row'][$i]["faq_ID"].'">';
-          if ($_SESSION["user_ID"] == $_SESSION['row'][$i]["service_user_ID"] && isset($_SESSION["started"]) && $_SESSION["started"] == "true" || (isset($_GET["my_questions"])  && $_GET["my_questions"] == "true"))
+          if ($_SESSION["user_ID"] == $_SESSION['row'][$i]["faq_user_ID"] && isset($_SESSION["started"]) && $_SESSION["started"] == "true" || (isset($_GET["my_questions"])  && $_GET["my_questions"] == "true"))
             echo '<a style="text-align:left;float:left;" href="deleteQuestion.php?faqID='.$_SESSION['row'][$i]["faq_ID"].'"><h1 class="glyphicon glyphicon-remove-sign fa-5x"></h1></a>';
           
           $date = new DateTime($_SESSION['row'][$i]["faq_date"]);
