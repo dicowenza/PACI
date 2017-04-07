@@ -18,7 +18,7 @@ if ($type == "confirmation"){
 
 } else if ($type == "answerQuestion"){
 	$to      = $mail;
-	$subject = "On a répondu à une de vos question, ".$pseudo;
+	$subject = utf8_decode("On a répondu à une de vos question, ".$pseudo);
 	$message = "Une de vos question à susciter la curiosité de ".$answerer.", allez voir!";
 	$headers = 'From: webmaster@example.com' . "\r\n" .
      'Reply-To: webmaster@example.com' . "\r\n" .
