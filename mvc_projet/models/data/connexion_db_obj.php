@@ -241,6 +241,7 @@
 
 		}
 
+
 		public function update_user_profil($userID, $lastname, $firstname, $nickname, $email, $password){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -255,6 +256,14 @@
             ));
     		//$data = $query->fetchAll();
 
+		}
+
+		public function delete_question_in_db($faq_ID){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query=$connexion->prepare("DELETE FROM faq WHERE faq_ID = :faqID");
+			$query=execute('faqID' => $faq_ID);
+			echo "delete done ";
 		}
 
 	}
