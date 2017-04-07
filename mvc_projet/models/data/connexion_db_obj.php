@@ -262,8 +262,7 @@
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			$query=$connexion->prepare("DELETE FROM faq WHERE faq_ID = :faqID");
-			$query=execute('faqID' => $faq_ID);
-			echo "delete done ";
+			$query->execute(array('faqID' => $faq_ID));
 		}
 
 	}
