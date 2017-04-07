@@ -14,8 +14,8 @@
 		header('Location: ../vues/connexion_vue.php?bad_language=true');
 	}else{
 		$_SESSION["started"]='true';
-		$_SESSION["user_ID"]=$row['user_ID'];
-		$_SESSION["pseudo"]=$row['user_nickname'];
+		$_SESSION["user_ID"]=$row[0]['user_ID'];
+		$_SESSION["pseudo"]=$row[0]['user_nickname'];
 		header('Location: ../vues/index.php');
 	}
 
