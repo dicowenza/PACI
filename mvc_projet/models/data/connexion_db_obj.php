@@ -117,7 +117,7 @@
 		public function db_load_services(){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$query=$connexion->prepare("SELECT * FROM service");
+			$query=$connexion->prepare("SELECT * FROM service INNER JOIN user ON user.user_ID = service.service_user_ID WHERE user_ID = service_user_ID");
 			$query->execute();
 			$i = 0;
 			while($row = $query->fetch(PDO::FETCH_ASSOC))
