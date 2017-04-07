@@ -192,8 +192,13 @@
 
 		public function insert_note_answer($answerID, $userID, $note){
 			$connexion=$this->db_reconnect();
-			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$query = $connexion->prepare('INSERT INTO note VALUES (0, :answerID, :userID, :note)');
+			//$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query = $connexion->prepare("SELECT * FROM note WHERE note_user_ID = :userID AND note_answer_ID = :answerID");
+			$query->execute(array('answerID' => $answerID, 'userID' => $userID));
+
+			$req = ($query->rowCount() == 0) ? "INSERT INTO note VALUES (0, :answerID, :userID, :note)" : "UPDATE note SET note_status = :note WHERE note_answer_ID = :answerID AND note_user_ID = :userID";
+
+			$query = $connexion->prepare($req);
     		$query->execute(array(
     		'answerID' => $answerID,
     		'userID' => $userID,
@@ -249,6 +254,7 @@
 
 		}
 
+
 		public function update_user_profil($userID, $lastname, $firstname, $nickname, $email, $password){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -263,6 +269,14 @@
             ));
     		//$data = $query->fetchAll();
 
+		}
+
+		public function delete_question_in_db($faq_ID){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query=$connexion->prepare("DELETE FROM faq WHERE faq_ID = :faqID");
+			$query=execute('faqID' => $faq_ID);
+			echo "delete done ";
 		}
 
 	}
