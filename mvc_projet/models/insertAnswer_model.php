@@ -11,7 +11,7 @@
         $_SESSION['db_connexion']=$db_connexion;
     }
 
-	//$_SESSION['db_connexion']->insert_answer_faq($_SESSION["user_ID"], $_SESSION["faqID"], $_SESSION["text_faq"]);
+	$_SESSION['db_connexion']->insert_answer_faq($_SESSION["user_ID"], $_SESSION["faqID"], $_SESSION["text_faq"]);
 
     $_SESSION['row'] = $_SESSION['db_connexion']->search_questioner_faq($_SESSION["faqID"]);
     for($i = 0; $i< count($_SESSION['row']); $i++ ){

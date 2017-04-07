@@ -174,6 +174,13 @@
             ));
 		}
 
+		public function delete_answer_faq($answerID){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query = $connexion->prepare("DELETE FROM answer_faq where answer_ID = :answerID");
+    		$query->execute(array('answerID' => $answerID));
+		}
+
 		public function insert_note_answer($answerID, $userID, $note){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
