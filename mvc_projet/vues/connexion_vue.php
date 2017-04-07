@@ -18,14 +18,12 @@
   <?php include_once ("navbar.php"); ?>
 
   <?php
-  if (isset($_GET["empty_fields"])){
-    $message='Remplissez tous les champs svp';
-    echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
-  }
-  if (isset($_GET["bad_language"])){
-    $message='Pas de gens comme ça pleaz';
-    echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
-  }
+    if (isset($_GET["bad_language"]) || isset($_GET["empty_fields"])){
+      $message = isset($_GET["bad_language"]) ? "On te connait pas toi !! Inscrivez vous stp" : "Remplissez tous les champs svp";
+      echo '<div style="font-size:20pt;text-align: center;" class="alert alert-danger">
+        <strong>STOP MEC !</strong> '.$message.'
+      </div>';
+    }
   ?>
 
   <div align="center" style="margin-top: 20%">

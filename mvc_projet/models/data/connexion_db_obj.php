@@ -42,12 +42,14 @@
 		}
 
 		public function login($usr_log){
-		$connexion=$this->db_reconnect();
-		$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-		$query= $connexion->prepare("SELECT DISTINCT * FROM user WHERE user_password = :password AND ( user_email = :login OR user_nickname = :login)");
-		$query->execute(array('password' => $usr_log->getPassword(),'login' => $usr_log->getLogin()));
-		$row = $query->fetch(PDO::FETCH_ASSOC);
-		return $row;
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query= $connexion->prepare("SELECT DISTINCT * FROM user WHERE user_password = :password AND ( user_email = :login OR user_nickname = :login)");
+			$query->execute(array('password' => $usr_log->getPassword(),'login' => $usr_log->getLogin()));
+			$i = 0;
+			while($row = $query->fetch(PDO::FETCH_ASSOC))
+				$array[$i++] = $row;
+			return $array;
 		}
 
 		public function db_load_user_data(){
