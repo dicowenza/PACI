@@ -74,16 +74,17 @@
               </div>
               <div class="modal-body">
                 <p style="font-size: 18pt ! important;"><u><b>Que souhaitez vous lui dire ?</b></u><br><br>
-                <form id="sendMail" method="post" action="sendMail.php">
-                  <input type="hidden" name="destination" value='.$_SESSION['row'][$i]["user_email"].'>
-                  <input type="hidden" name="sender" value="donald@trump.com">
+                <form id="sendMail" method="post" action="../controleurs/answerService_controleur.php">
+                  <input type="hidden" name="destination" value="'.utf8_encode($_SESSION['row'][$i]["user_email"]).'">
+                  <input type="hidden" name="type" value="answerService">
                   <input type="hidden" name="subject" value="Message pour votre annonce : '.utf8_encode($_SESSION['row'][$i]["service_title"]).'">
                   <textarea style="font-size: 18pt ! important; width:80%;" class="input-xlarge" name="message" rows="5"></textarea>
-                </form>
+
               </div>
               <div class="modal-footer">
-                <button class="btn btn-success" type="submit" form="sendMail">Envoyer</button>
+                <input class="btn btn-success" type="submit" value="Envoyer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+              </form>
               </div>
             </div>
 

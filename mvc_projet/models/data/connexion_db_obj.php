@@ -104,7 +104,7 @@
 		public function db_load_usr_services(){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$query=$connexion->prepare("SELECT * FROM service WHERE service_user_ID = ".$_SESSION["user_ID"]);
+			$query=$connexion->prepare("SELECT * FROM service INNER JOIN user ON user.user_ID = service.service_user_ID WHERE user_ID = service_user_ID AND service_user_ID = ".$_SESSION["user_ID"]);
 			$query->execute();
 			$i = 0;
 			while($row = $query->fetch(PDO::FETCH_ASSOC))
@@ -129,7 +129,7 @@
 		public function db_load_services_by_cat($category){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$query=$connexion->prepare("SELECT * FROM service WHERE service_category = '".$category."'");
+			$query=$connexion->prepare("SELECT * FROM service INNER JOIN user ON user.user_ID = service.service_user_ID WHERE user_ID = service_user_ID AND service_category = '".$category."'");
 			$query->execute();
 			$i = 0;
 			while($row = $query->fetch(PDO::FETCH_ASSOC))
@@ -222,6 +222,18 @@
 			while($row = $query->fetch(PDO::FETCH_ASSOC))
 				$array[$i++] = $row;
 			return $array[0]["user_nickname"];
+
+		}
+
+		public function search_mailer($userID){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query=$connexion->prepare("SELECT DISTINCT user_email FROM user WHERE user_ID = ".$userID);
+			$query->execute();
+			$i = 0;
+			while($row = $query->fetch(PDO::FETCH_ASSOC))
+				$array[$i++] = $row;
+			return $array[0]["user_email"];
 
 		}
 

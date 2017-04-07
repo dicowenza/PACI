@@ -24,6 +24,15 @@ if ($type == "confirmation"){
      'Reply-To: webmaster@example.com' . "\r\n" .
      'X-Mailer: PHP/' . phpversion();
 
+} else if ($type == "answerService"){
+	$to      = $mail;
+	$subject = $title;
+	$message = $pseudo." est très intéressé par votre annonce :\n" .$message;
+	$headers = 'From: '.$sender . "\r\n" .
+     'Reply-To: '.$sender . "\r\n" .
+     'X-Mailer: PHP/' . phpversion();
+     echo 'done';
+
 } else {
 	$to      = $destination;
 	$subject = $subject;
