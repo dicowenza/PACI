@@ -181,6 +181,13 @@
     		$query->execute(array('answerID' => $answerID));
 		}
 
+		public function delete_service($serviceID){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query = $connexion->prepare("DELETE FROM service where service_ID = :serviceID");
+    		$query->execute(array('serviceID' => $serviceID));
+		}
+
 		public function insert_note_answer($answerID, $userID, $note){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);

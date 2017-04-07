@@ -48,7 +48,7 @@
             <div class="modal-content">
               <div class="modal-header">';
               if ($_SESSION["user_ID"] == $_SESSION['row'][$i]["service_user_ID"] && isset($_SESSION["started"]) && $_SESSION["started"] == "true" || (isset($_GET["my_services"])  && $_GET["my_services"] == "true"))
-                  echo '<a style="text-align:left;float:left;" href="deleteService.php?serviceID='.$_SESSION['row'][$i]["service_ID"].'"><h1  class="glyphicon glyphicon-remove-sign fa-5x"></h1></a>';
+                  echo '<a style="text-align:left;float:left;" href="../controleurs/deleteService_controleur.php?serviceID='.$_SESSION['row'][$i]["service_ID"].'"><h1  class="glyphicon glyphicon-remove-sign fa-5x"></h1></a>';
               echo '<h4 class="modal-title" style="text-align:center;font-size: 23pt ! important;">'.utf8_encode($_SESSION['row'][$i]["service_title"]).'</h4>
               </div>
               <div class="modal-body">
@@ -75,7 +75,7 @@
               <div class="modal-body">
                 <p style="font-size: 18pt ! important;"><u><b>Que souhaitez vous lui dire ?</b></u><br><br>
                 <form id="sendMail" method="post" action="sendMail.php">
-                  <input type="hidden" name="destination" value="jeffrey.seutin@etu.u-bordeaux.fr">
+                  <input type="hidden" name="destination" value="okan.soyturk@etu.u-bordeaux.fr">
                   <input type="hidden" name="sender" value="donald@trump.com">
                   <input type="hidden" name="subject" value="Message pour votre annonce : '.utf8_encode($_SESSION['row'][$i]["service_title"]).'">
                   <textarea style="font-size: 18pt ! important; width:80%;" class="input-xlarge" name="message" rows="5"></textarea>
