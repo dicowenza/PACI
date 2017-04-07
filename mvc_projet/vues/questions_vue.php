@@ -60,12 +60,12 @@ function countChars(e, counter) {
                     $logd = 1;
                     if(isset($_SESSION["started"]) && $_SESSION["started"] == "true"){
                       if($_SESSION['faq_answers'][$i][$j]["answer_user_ID"] == $_SESSION["user_ID"])
-                        echo '<a style="margin-left: 10px;text-align:left;float:left;" href="deleteAnswer.php?answerID='.$_SESSION['faq_answers'][$i][$j]["answer_ID"].'"><h2 class="glyphicon glyphicon-remove-sign fa-5x"></h2></a>';
+                        echo '<a style="margin-left: 10px;text-align:left;float:left;" href="../controleurs/deleteAnswer_controleur.php?answerID='.$_SESSION['faq_answers'][$i][$j]["answer_ID"].'"><h2 class="glyphicon glyphicon-remove-sign fa-5x"></h2></a>';
                     }else $logd = 0;
                      echo '<div align="center" style="text-align:center;"><div style="display:block;margin-left: 20px;float:left;line-height:38px;">
-                      <a href="'.(($logd == 0) ? 'login.php' : ('insertNote.php?answerID='.$_SESSION['faq_answers'][$i][$j]["answer_ID"].'&userID='.$_SESSION["user_ID"].'&noteStatus=1')) .'"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-up fa-5x"></span></a>
+                      <a href="'.(($logd == 0) ? 'connexion_vue.php' : ('../controleurs/insertNote_controleur.php?answerID='.$_SESSION['faq_answers'][$i][$j]["answer_ID"].'&userID='.$_SESSION["user_ID"].'&noteStatus=1')) .'"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-up fa-5x"></span></a>
                       <span style="display:block;font-size: 15pt ! important;">'.(($_SESSION['faq_answers'][$i][$j]['nbr']=="") ? '0' : $_SESSION['faq_answers'][$i][$j]['nbr']).'</span>
-                      <a href="'.(($logd == 0) ? 'login.php' : ('insertNote.php?answerID='.$_SESSION['faq_answers'][$i][$j]["answer_ID"].'&userID='.$_SESSION["user_ID"].'&noteStatus=-1')) .'"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-down fa-5x"></span></a>
+                      <a href="'.(($logd == 0) ? 'connexion_vue.php' : ('../controleurs/insertNote_controleur.php?answerID='.$_SESSION['faq_answers'][$i][$j]["answer_ID"].'&userID='.$_SESSION["user_ID"].'&noteStatus=-1')) .'"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-down fa-5x"></span></a>
                     </div></div>';
 
 

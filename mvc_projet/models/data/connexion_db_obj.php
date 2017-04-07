@@ -161,7 +161,6 @@
             'category' => utf8_decode($category)
             ));
     		//$data = $query->fetchAll();
-
 		}
 
 		public function insert_answer_faq($user_ID, $faqID, $answer){
@@ -172,6 +171,17 @@
     		'answer' => $answer,
     		'faqID' => $faqID,
             'userID' => $user_ID
+            ));
+		}
+
+		public function insert_note_answer($answerID, $userID, $note){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query = $connexion->prepare('INSERT INTO note VALUES (0, :answerID, :userID, :note)');
+    		$query->execute(array(
+    		'answerID' => $answerID,
+    		'userID' => $userID,
+            'note' => $note
             ));
 		}
 
