@@ -227,7 +227,6 @@
 			while($row = $query->fetch(PDO::FETCH_ASSOC))
 				$array[$i++] = $row;
 			return $array[0]["user_nickname"];
-
 		}
 
 		public function final_insertion_user($id, $pseudo, $password){
