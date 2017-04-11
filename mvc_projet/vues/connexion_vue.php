@@ -35,6 +35,7 @@
     <br><br>
     <input type="submit" value="Se connecter" class="btn btn-success" style="font-size: 35px ! important; width: 30%; height: 100px;">
     </form>
+    <a href="passwordIsForgotten_vue.php"><h1>mot de passe oublié?</h1></a>
   </div>
 
 </body>

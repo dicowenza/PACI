@@ -253,6 +253,27 @@
 
 		}
 
+		public function update_password_forgotten($pseudo, $password){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query = $connexion->prepare("UPDATE user SET user_password = :password WHERE user_nickname=:pseudo");
+			$query->execute(array(
+            'pseudo' => utf8_decode($pseudo),
+            'password' => utf8_decode($password)
+            ));
+		}
+
+		public function recherche_user($pseudo){
+			$connexion=$this->db_reconnect();
+			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$query = $connexion->prepare("SELECT * FROM user WHERE user_nickname = '".$pseudo."'");
+			$query->execute();
+			$i = 0;
+			while($row = $query->fetch(PDO::FETCH_ASSOC))
+				$array[$i++] = $row;
+			return $array;
+		}
+
 
 		public function update_user_profil($userID, $lastname, $firstname, $nickname, $email, $password){
 			$connexion=$this->db_reconnect();

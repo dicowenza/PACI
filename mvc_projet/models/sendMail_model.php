@@ -11,7 +11,7 @@ if ($type == "confirmation"){
 } else if ($type == "passwordForgotten"){
 	$to      = $mail;
 	$subject = "Validation du nouveau mot de passe, ".$pseudo;
-	$message = "Vous avez demandé un renouvelement de mot de passe. Cliquez sur le lien suivant pour valider le nouveau.";
+	$message = "Vous avez demandé un renouvelement de mot de passe. Voici un mot de passe temporaire: ".$mdp;
 	$headers = 'From: webmaster@example.com' . "\r\n" .
      'Reply-To: webmaster@example.com' . "\r\n" .
      'X-Mailer: PHP/' . phpversion();
