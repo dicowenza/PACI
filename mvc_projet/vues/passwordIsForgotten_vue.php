@@ -31,8 +31,6 @@
     <form method="post" action="../controleurs/passwordIsForgotten_controleur.php">
     <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="pseudo" style="width:20%; height:15%; text-align:center; font-size:20pt;">
         <br><br>
-		<input type="text" class="form-control" id="email" name="email" placeholder="email" style="width:20%; height:15%; text-align:center; font-size:20pt;">
-		<br><br>
     <input type="submit" value="demande de renouvellement" class="btn btn-success" style="font-size: 35px ! important; width: 30%; height: 100px;">
     </form>
         <br>

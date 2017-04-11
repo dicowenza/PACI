@@ -15,6 +15,8 @@
 		$chaine='abcdefghijklmnopqrstuvwxyz0123456789';
 		$mdp=str_shuffle($chaine);
 		$mdp=substr($mdp,0,8);
+		$mail = $row[0]["user_email"];
+		echo $mail;
 		$type="passwordForgotten";
 		$_SESSION['db_connexion']->update_password_forgotten($pseudo, $mdp);
 		include_once("sendMail_model.php");
