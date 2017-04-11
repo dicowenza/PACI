@@ -26,7 +26,7 @@
     }
   ?>
 
-  <div align="center" style="margin-top: 20%">
+  <div align="center" style="margin-top: 10%">
     <h1 align="center" >Connexion</h1><br>
     <form method="post" action="../controleurs/connexion_controleur.php">
 		<input type="text" class="form-control" id="login" name="login" placeholder="Pseudo ou email" style="width:20%; height:15%; text-align:center; font-size:20pt;">

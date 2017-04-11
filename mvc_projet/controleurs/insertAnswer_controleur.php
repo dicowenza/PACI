@@ -3,6 +3,8 @@
 
     $_SESSION["faqID"] = $_POST["faqID"];
     $_SESSION["text_faq"] = $_POST["answer"];
+    $_SESSION["modalTarget"] = $_GET["faqID"];
+
 
 	if(isset($_SESSION["user_ID"]) && ($_SESSION["user_ID"] != -1)) 
         header("Location: ../models/insertAnswer_model.php");

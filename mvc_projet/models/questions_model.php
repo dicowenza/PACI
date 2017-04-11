@@ -25,6 +25,9 @@
 				}
 		   	}
 
-	header('Location: ../vues/questions_vue.php');
+	$modalTarget = (isset($_SESSION['modalTarget'])) ? ("?openModal=".$_SESSION["modalTarget"]) : "";
+	unset($_SESSION['modalTarget']);
+
+	header('Location: ../vues/questions_vue.php'.$modalTarget);
 
 ?>

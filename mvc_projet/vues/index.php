@@ -20,7 +20,7 @@
 		include_once ("navbar.php"); 
 	?>
 
-  <div align="center" style="margin-top: 20%">
+  <div align="center" style="margin-top: 15%">
 
     <a href="../controleurs/questions_controleur.php"><button style="font-size: 35px ! important; width: 500px; height: 100px;" class="btn btn-success" type="button" >QUESTIONS</button></a>
     <br><br>
