@@ -22,21 +22,23 @@
 
   <div align="center" style="margin-top: 15%">
 
-    <a href="../controleurs/questions_controleur.php"><button style="font-size: 35px ! important; width: 500px; height: 100px;" class="btn btn-success" type="button" >QUESTIONS</button></a>
+    <a href="../controleurs/questions_controleur.php">
+      <button style="font-size: 35px ! important; width: 80%; padding: 20px;" class="btn btn-success" type="button" >
+      <img src="../images/search.png" style="width: 10%;height: auto;float: left">
+      Un question vous turlupine ?<br> Posez là ici et les habitants de votre commune de<br> Saint Aubin Les Pignols vous répondront
+      </button>
+    </a>
+    
     <br><br>
 
-    <a href="../controleurs/services_controleur.php"><button style="font-size: 35px ! important; width: 500px; height: 100px;" class="btn btn-primary" type="button" >SERVICES</button></a>
+    <a href="../controleurs/services_controleur.php">
+      <button style="font-size: 35px ! important; width: 80%; padding: 20px;" class="btn btn-primary" type="button" >
+      <img src="../images/help.png" style="width: 10%;height: auto;float: left">
+      Vous avez besoin de quelqu'un, ou vous souhaitez<br> proposer un service pour les habitants de votre commune ?<br> Déposez une annonce ici, c'est gratos ;)
+      </button>
+    </a>
+
     <br><br>
-  
-    <!--<div class="btn-group">
-      <button style="font-size: 35px ! important; width: 500px; height: 100px;" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SERVICES
-      <span class="caret"></span></button>
-      <ul class="dropdown-menu" aria-labelledby="services">
-        <li><a style="font-size: 35px ! important;" ref="#">Aide à domicile</a></li>
-        <li><a style="font-size: 35px ! important;" href="#">Soins infirmiers</a></li>
-        <li><a style="font-size: 35px ! important;" href="#">Loisirs</a></li>
-      </ul>
-    </div>-->
 
   </div>
 
