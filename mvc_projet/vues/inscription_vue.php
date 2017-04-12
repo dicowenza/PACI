@@ -33,6 +33,40 @@
     <br><br>
     <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom" style="width:50%; height:15%; text-align:center; font-size:20pt;">
     <br><br>
+
+
+    <!-- Champ pour l'adresse avec auto completion -->
+    <input id="pac-input"  name="address" class="form-control" type="text" placeholder="Entrez votre adresse (ça reste entre nous)" style="width:50%; height:15%; text-align:center; font-size:20pt;">
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var cityBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(44.783621,-0.566061),
+            new google.maps.LatLng(44.822751, -0.537646)
+        );
+
+        var input = document.getElementById('pac-input');
+        var options = {
+          bounds: cityBounds,
+          types: ['geocode'],
+          componentRestrictions: {country: "fr"}
+        };
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+        autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            window.alert("Cette adresse est fausse, arretez de tricher svp : '" + place.name + "'");
+            return;
+          }
+          window.alert("latitude " + place.geometry.location.lat() + " longittude : " + place.geometry.location.lng());
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNfIpY1HskI6EdkVAMVwb9QwULRc-VPUk&libraries=places&callback=initMap"async defer></script>
+
+
+
+    <br><br>
     <input type="text" class="form-control" id="email" name="email" placeholder="xyz.example@mail.com" style="width:50%; height:15%; text-align:center; font-size:20pt;">
     <br><br>
     <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Allias" style="width:50%; height:15%; text-align:center; font-size:20pt;">
