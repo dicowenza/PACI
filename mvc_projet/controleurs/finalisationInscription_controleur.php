@@ -1,5 +1,5 @@
 <?php
 	echo 'ici';
-	header("Location: ../vues/finalisationInscription_vue.php");
+	header('Location: ../vues/inscription_vue.php?successfulSignin');
 
 ?>

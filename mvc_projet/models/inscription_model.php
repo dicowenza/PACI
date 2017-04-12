@@ -12,7 +12,7 @@
 	#$nw_user=new User()
 	#$db_connexion->inscription(nw_user);
 	$rand = rand(100000000, 999999999);	
-	$_SESSION['db_connexion']->inscription($nom,$prenom,$pseudo,$mail,$rand);
+	$_SESSION['db_connexion']->inscription($nom,$prenom,$pseudo,$mail,$adresse,$latitude,$longitude,$rand);
  
 	include_once("sendMail_model.php");
 

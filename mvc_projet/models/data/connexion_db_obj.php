@@ -26,16 +26,19 @@
 			}
 		}
 
-		public function inscription($nom,$prenom,$pseudo,$mail,$rand){
+		public function inscription($nom,$prenom,$pseudo,$mail,$adresse,$latitude,$longitude,$rand){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-				$req = $connexion->prepare("INSERT INTO user (user_firstname, user_lastname, user_password, user_nickname, user_email, user_id_confirm) VALUES (:prenom, :nom, :password, :pseudo, :email, :id_confirm)");
+				$req = $connexion->prepare("INSERT INTO user (user_firstname, user_lastname, user_password, user_nickname, user_email, user_address, user_address_latitude, user_address_longitude, user_id_confirm) VALUES (:prenom, :nom, :password, :pseudo, :email, :adresse, :adresseLat, :adresseLgn, :id_confirm)");
         	$req->execute(array(
             	'nom' => utf8_decode($nom), 
             	'prenom' => utf8_decode($prenom),
             	'pseudo' => utf8_decode($pseudo),
             	'password' => 'NULL',
             	'email' => utf8_decode($mail),
+            	'adresse' => utf8_decode($adresse),
+            	'adresseLat' => $latitude,
+            	'adresseLgn' => $longitude,
             	'id_confirm' => $rand
             ));
             echo 'done';

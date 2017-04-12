@@ -14,18 +14,22 @@
 <script type="text/javascript">
 </script>
 
-<body text-align="center">
+<body align="center" text-align="center">
 	
 	<?php 
 		include_once ("navbar.php"); 
 	?>
 
-  <div align="center" style="margin-top: 15%">
+  <div text-align="center" align="center" style="margin-top:5%;">
+
+    <h1>Projet d'Aide pour la Commune Imaginé et Destiné aux Néophytes, Agés et Handicapés</h1>
+    <br><br>
+
 
     <a href="../controleurs/questions_controleur.php">
       <button style="font-size: 35px ! important; width: 80%; padding: 20px;" class="btn btn-success" type="button" >
       <img src="../images/search.png" style="width: 10%;height: auto;float: left">
-      Un question vous turlupine ?<br> Posez là ici et les habitants de votre commune de<br> Saint Aubin Les Pignols vous répondront
+      Une question vous turlupine ?<br> Posez là ici et les habitants de votre commune de<br> Saint Aubin Les Pignols vous répondront
       </button>
     </a>
     
