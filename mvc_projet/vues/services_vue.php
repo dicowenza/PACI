@@ -10,8 +10,20 @@
 
 <script src="bootstrap/js/jquery.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
 
 <script type="text/javascript">
+
+  function calcDist(lat1,lon1,lat2,lon2){
+    var p1 = new google.maps.LatLng(lat1, lon1);
+    var p2 = new google.maps.LatLng(lat2, lon2);
+    return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
+  }
+
+  function setDistance(serviceID,lat1,lon1,lat2,lon2){
+    document.getElementById("dist"+serviceID).innerHTML = "A environ <b>" + calcDist(lat1,lon1,lat2,lon2) + " km</b> de votre maison";
+  }
+
 </script>
 
 <body text-align="center">
@@ -37,7 +49,10 @@
   <div align="center">
 
     <?php
-      for($i = 0; $i< count($_SESSION['row']); $i++ ){
+
+        
+        for($i = 0; $i< count($_SESSION['row']); $i++ ){
+
         $date = strtotime($_SESSION['row'][$i]["service_date"]);
         $delay = strtotime($_SESSION['row'][$i]["service_delay"]);
         echo '
@@ -56,7 +71,9 @@
               </div>
               <div class="modal-footer" style="text-align: center;">
                 <a style="text-align:left;float:left;" href="#" class="btn btn-default" type="button" data-toggle="modal" data-target="#'.$_SESSION['row'][$i]["service_ID"].'">Contacter la personne</a>
-                <p style="text-align:right;float:right;font-size: 13pt ! important;">Valable du '.date("d/m/y", $date).' jusqu\'au '.date("d/m/y", $delay).'</p>
+                <p id="dist'.$_SESSION['row'][$i]["service_ID"].'" style="text-align:center;float:center;font-size: 13pt ! important;"></p>';
+                echo ('<script>setDistance('.$_SESSION['row'][$i]["service_ID"].','.$_SESSION["user_adrLat"].','.$_SESSION["user_adrLng"].','.$_SESSION["row"][$i]["user_address_latitude"].','.$_SESSION["row"][$i]["user_address_longitude"].')</script>');
+                echo '<p style="text-align:right;float:right;font-size: 13pt ! important;">Valable du '.date("d/m/y", $date).' jusqu\'au '.date("d/m/y", $delay).'</p>
               </div>
             </div>
 

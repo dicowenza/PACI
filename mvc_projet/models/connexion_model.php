@@ -16,6 +16,8 @@
 		$_SESSION["started"]='true';
 		$_SESSION["user_ID"]=$row[0]['user_ID'];
 		$_SESSION["pseudo"]=$row[0]['user_nickname'];
+		$_SESSION["user_adrLat"]=$row[0]['user_address_latitude'];
+		$_SESSION["user_adrLng"]=$row[0]['user_address_longitude'];
 		header('Location: ../vues/index.php');
 	}
 

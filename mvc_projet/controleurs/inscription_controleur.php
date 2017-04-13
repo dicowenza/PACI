@@ -6,7 +6,7 @@
 	$nom = $_POST['nom'];
 	$prenom = $_POST['prenom'];
 	$pseudo = $_POST['pseudo'];
-	$email= $_POST['email'];
+	$mail= $_POST['email'];
 	$type = $_POST['type'];
 	$adresse = $_POST['adresse'];
 	$latitude = $_POST['adresseLatitude'];
@@ -20,7 +20,7 @@
 		header('Location: ../vues/inscription_vue.php?missing=prenom'.$fields);
 	else if(empty($pseudo))
 		header('Location: ../vues/inscription_vue.php?missing=pseudo'.$fields);
-	else if(empty($email))
+	else if(empty($mail))
 		header('Location: ../vues/inscription_vue.php?missing=email'.$fields);
 	else if(empty($latitude))
 		header('Location: ../vues/inscription_vue.php?missing=adresse'.$fields);
