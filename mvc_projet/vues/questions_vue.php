@@ -28,6 +28,31 @@
   </div>
   <div align="center">
     <?php
+
+    function humanTiming ($time)
+    {
+
+        $time = time() - $time; // to get the time since that moment
+        $time = ($time<1)? 1 : $time;
+        $tokens = array (
+            31536000 => 'an',
+            2592000 => 'mois',
+            604800 => 'semaine',
+            86400 => 'jour',
+            3600 => 'heure',
+            60 => 'minute',
+            1 => 'seconde'
+        );
+
+        foreach ($tokens as $unit => $text) {
+            if ($time < $unit) continue;
+            $numberOfUnits = floor($time / $unit);
+            return $numberOfUnits.' '.$text.(($numberOfUnits>1)?'s':'');
+        }
+
+    }
+
+
     $usrLogged = isset($_SESSION["started"]) && $_SESSION["started"] == "true";
     for ($i = 0; $i < count($_SESSION['row']); $i++)
     {
@@ -42,11 +67,11 @@
             || (isset($_GET["my_questions"]) && $_GET["my_questions"] == "true")) 
                 echo '<a style="text-align:left;float:left;" href="../controleurs/delete_question_controleur.php?faqID='.$faqID.'"><h1 class="glyphicon glyphicon-remove-sign fa-5x"></h1></a>';
 
-      $date = new DateTime($faq["faq_date"]);
+      $date = strtotime($faq["faq_date"]);
       $now = new DateTime();
-      $faqUsr = ($_SESSION["user_ID"] == $faq["faq_user_ID"] && $usrLogged) ? "moi" : ($faq["user_nickname"].($faq["user_isModerator"] == 1 ? " [MODERATEUR]" : ""));
+      $faqUsr = ($_SESSION["user_ID"] == $faq["faq_user_ID"] && $usrLogged) ? "ma propre personne" : ($faq["user_nickname"].($faq["user_isModerator"] == 1 ? " <b>[MODERATEUR]</b>" : ""));
       echo '' . $faqText . '
-      <br/><br /><p class="modal-title" style="font-size: 13pt ! important;"><i>' . $date->diff($now)->format('Il y a %d jours par ').$faqUsr.(($nbAnswer > 0) ? '. <b>' : '. ') . $nbAnswer . ' réponse(s)</b></i></p>
+      <br/><br /><p class="modal-title" style="font-size: 13pt ! important;"><i>' .('Il y a '.humanTiming($date).' par ').$faqUsr.(($nbAnswer > 0) ? '. <b>' : '. ') . $nbAnswer . ' réponse(s)</b></i></p>
       </button>
       <div style="padding-top: 5%" id="'.$faqID.'" class="modal fade " role="dialog">
         <div class="modal-dialog modal-lg">
@@ -63,13 +88,13 @@
           for ($j = 0; $j < count($_SESSION['faq_answers'][$i]); $j++)
               {
               $asw = $_SESSION['faq_answers'][$i][$j];
-              $AswDate = new DateTime($asw["answer_date"]);
-              if ($usrLogged && ($asw["answer_user_ID"] == $_SESSION["user_ID"] || $_SESSION["user_isModerator"] == 1)) 
+              $AswDate = strtotime($asw["answer_date"]);
+              if ($usrLogged && ($asw["answer_user_ID"] == $_SESSION["user_ID"] || $_SESSION["user_isModerator"] == 1))
                   echo '<a style="margin-left: 10px;text-align:left;float:left;" href="../controleurs/deleteAnswer_controleur.php?answerID=' . $asw["answer_ID"] . '&faqID=' . $faqID . '"><h2 class="glyphicon glyphicon-remove-sign fa-5x"></h2></a>';
               
               if (!$usrLogged || ($usrLogged && $asw["answer_user_ID"] != $_SESSION["user_ID"]))
                   {
-                  $lk = $usrLogged ? 'connexion_vue.php' : ('../controleurs/insertNote_controleur.php?answerID='.$asw["answer_ID"].'&userID='.$_SESSION["user_ID"].'&faqID='.$faqID);
+                  $lk = $usrLogged ? ('../controleurs/insertNote_controleur.php?answerID='.$asw["answer_ID"].'&userID='.$_SESSION["user_ID"].'&faqID='.$faqID) : 'connexion_vue.php';
 
                   echo '<div align="center" style="text-align:center;"><div style="display:block;margin-left: 20px;float:left;line-height:38px;">
                 <a href="'.$lk.'&noteStatus=1"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-up fa-5x"></span></a>
@@ -78,10 +103,10 @@
               </div></div>';
                   }
 
-              $usrAsw = $asw["user_nickname"].($asw["user_isModerator"] == 1 ? " [MODERATEUR]" : "");
+              $usrAsw = $asw["user_nickname"].($asw["user_isModerator"] == 1 ? " <b>[MODERATEUR]</b>" : "");
               echo '<div style="padding:2%; outline: 1px solid">
                 <p style="font-size: 15pt ! important;">' . utf8_encode($asw["answer_text"]) . '</p>
-                <p class="modal-title" style="font-size: 13pt ! important;"><i>' . $AswDate->diff($now)->format('Il y a %d jours') . ' par ' . $usrAsw.'</i></p>
+                <p class="modal-title" style="font-size: 13pt ! important;"><i>' .('Il y a '.humanTiming($AswDate)).' par ' . $usrAsw.'</i></p>
               </div><br />';
               }
           }
