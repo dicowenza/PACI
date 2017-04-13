@@ -266,11 +266,14 @@
             ));
 		}
 
-		public function recherche_user($pseudo){
+		public function recherche_user($pseudo, $mail){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$query = $connexion->prepare("SELECT * FROM user WHERE user_nickname = '".$pseudo."'");
-			$query->execute();
+			$query = $connexion->prepare("SELECT * FROM user WHERE user_nickname = :pseudo AND user_email = :mail");
+			$query->execute(array(
+				'pseudo' => $pseudo,
+				'mail' => $mail
+				));
 			$i = 0;
 			while($row = $query->fetch(PDO::FETCH_ASSOC))
 				$array[$i++] = $row;

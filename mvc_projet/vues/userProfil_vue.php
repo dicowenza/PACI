@@ -18,6 +18,9 @@
 	
 	<?php 
 		include_once ("navbar.php"); 
+    if(isset($_GET["successful"]))
+      echo '<div style="font-size:20pt;text-align: center;" class="alert alert-success">
+        Vos données ont été modifiées.</div>';
 	?>
 
   <h1 style="margin:2%">Vos informations</h1><br>
