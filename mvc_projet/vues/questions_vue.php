@@ -44,7 +44,7 @@
 
       $date = new DateTime($faq["faq_date"]);
       $now = new DateTime();
-      $faqUsr = $faq["user_nickname"].($faq["user_isModerator"] == 1 ? " [MODERATEUR]" : "");
+      $faqUsr = ($_SESSION["user_ID"] == $faq["faq_user_ID"] && $usrLogged) ? "moi" : ($faq["user_nickname"].($faq["user_isModerator"] == 1 ? " [MODERATEUR]" : ""));
       echo '' . $faqText . '
       <br/><br /><p class="modal-title" style="font-size: 13pt ! important;"><i>' . $date->diff($now)->format('Il y a %d jours par ').$faqUsr.(($nbAnswer > 0) ? '. <b>' : '. ') . $nbAnswer . ' réponse(s)</b></i></p>
       </button>
@@ -64,13 +64,12 @@
               {
               $asw = $_SESSION['faq_answers'][$i][$j];
               $AswDate = new DateTime($asw["answer_date"]);
-              $logd = 1;
               if ($usrLogged && ($asw["answer_user_ID"] == $_SESSION["user_ID"] || $_SESSION["user_isModerator"] == 1)) 
                   echo '<a style="margin-left: 10px;text-align:left;float:left;" href="../controleurs/deleteAnswer_controleur.php?answerID=' . $asw["answer_ID"] . '&faqID=' . $faqID . '"><h2 class="glyphicon glyphicon-remove-sign fa-5x"></h2></a>';
               
               if (!$usrLogged || ($usrLogged && $asw["answer_user_ID"] != $_SESSION["user_ID"]))
                   {
-                  $lk = ($logd == 0) ? 'connexion_vue.php' : ('../controleurs/insertNote_controleur.php?answerID='.$asw["answer_ID"].'&userID='.$_SESSION["user_ID"].'&faqID='.$faqID);
+                  $lk = $usrLogged ? 'connexion_vue.php' : ('../controleurs/insertNote_controleur.php?answerID='.$asw["answer_ID"].'&userID='.$_SESSION["user_ID"].'&faqID='.$faqID);
 
                   echo '<div align="center" style="text-align:center;"><div style="display:block;margin-left: 20px;float:left;line-height:38px;">
                 <a href="'.$lk.'&noteStatus=1"><span style="display:block;font-size: 20pt" class="glyphicon glyphicon-chevron-up fa-5x"></span></a>
