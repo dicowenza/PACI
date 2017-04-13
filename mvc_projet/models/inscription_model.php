@@ -16,6 +16,7 @@
 
     if($e == 23000){
         header("Location: ../vues/inscription_vue.php?notUnique=true");
+        break;
     }
  
 	include_once("sendMail_model.php");
