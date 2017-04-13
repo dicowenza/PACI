@@ -281,9 +281,11 @@
 		}
 
 
-		public function update_user_profil($userID, $lastname, $firstname, $nickname, $email, $password){
+		public function update_user_profil($userID, $lastname, $firstname, $nickname, $email, $password, $e){
+			try{
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			echo ' ere ';
 			$query = $connexion->prepare("UPDATE user SET user_firstname = :firstname, user_lastname = :lastname, user_nickname = :nickname, user_password = :password, user_email = :email WHERE user_ID = :userID");
     		$query->execute(array(
             'userID' => $userID,
@@ -293,7 +295,11 @@
             'password' => utf8_decode($password),
             'email' => $email
             ));
-    		//$data = $query->fetchAll();
+
+    	} catch(PDOException $e){
+    		return((int) $e->getCode());
+
+    	}
 
 		}
 

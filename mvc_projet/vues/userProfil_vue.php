@@ -20,7 +20,10 @@
 		include_once ("navbar.php"); 
     if(isset($_GET["successful"]))
       echo '<div style="font-size:20pt;text-align: center;" class="alert alert-success">
-        Vos données ont été modifiées.</div>';
+        Vos données ont été modifiées.</div>'; 
+    else if(isset($_GET["notUnique"]))
+      echo '<div style="font-size:20pt;text-align: center;" class="alert alert-danger">
+        Vous essayer de copier quelqu\'un Monsieur</div>';
 	?>
 
   <h1 style="margin:2%">Vos informations</h1><br>
@@ -56,7 +59,7 @@
       </div><br>
       <div>
       <input type="submit" value="Valider" class="btn btn-success" style="font-size: 35px ! important; width: 200px; height: 75px; margin: 10px;">
-      <button type="button" onclick="document.location.href=\'test_index.php\'" class="btn btn-default" style="font-size: 35px ! important; width: 200px; height: 75px; margin: 10px;">Retour</button>
+      <button type="button" onclick="document.location.href=\'index.php\'" class="btn btn-default" style="font-size: 35px ! important; width: 200px; height: 75px; margin: 10px;">Retour</button>
       </div>
       </form>';
     }
