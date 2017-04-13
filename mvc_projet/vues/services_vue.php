@@ -10,7 +10,8 @@
 
 <script src="bootstrap/js/jquery.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCNfIpY1HskI6EdkVAMVwb9QwULRc-VPUk&libraries=geometry"></script>
+
 
 <script type="text/javascript">
 
@@ -25,6 +26,7 @@
   }
 
 </script>
+
 
 <body text-align="center">
   <?php include_once ("navbar.php"); ?>
@@ -52,9 +54,11 @@
 
         
         for($i = 0; $i< count($_SESSION['row']); $i++ ){
+        $srvc = $_SESSION['row'][$i];
+        $srvcID = $srvc["service_ID"];
 
-        $date = strtotime($_SESSION['row'][$i]["service_date"]);
-        $delay = strtotime($_SESSION['row'][$i]["service_delay"]);
+        $date = strtotime($srvc["service_date"]);
+        $delay = strtotime($srvc["service_delay"]);
         echo '
         <div id="myModal">
           <div style="width:80%" class="modal-dialog modal-lg">
@@ -62,17 +66,19 @@
             <!-- Modal content-->
             <div class="modal-content">
               <div class="modal-header">';
-              if ($_SESSION["user_ID"] == $_SESSION['row'][$i]["service_user_ID"] && isset($_SESSION["started"]) && $_SESSION["started"] == "true" || (isset($_GET["my_services"])  && $_GET["my_services"] == "true"))
-                  echo '<a style="text-align:left;float:left;" href="../controleurs/deleteService_controleur.php?serviceID='.$_SESSION['row'][$i]["service_ID"].'"><h1  class="glyphicon glyphicon-remove-sign fa-5x"></h1></a>';
-              echo '<h4 class="modal-title" style="text-align:center;font-size: 23pt ! important;">'.utf8_encode($_SESSION['row'][$i]["service_title"]).'</h4>
+              $usrLogged = (isset($_SESSION["started"]) && $_SESSION["started"] == "true");
+              if ($_SESSION["user_ID"] == $srvc["service_user_ID"] && $usrLogged || (isset($_GET["my_services"])  && $_GET["my_services"] == "true"))
+                  echo '<a style="text-align:left;float:left;" href="../controleurs/deleteService_controleur.php?serviceID='.$srvcID.'"><h1  class="glyphicon glyphicon-remove-sign fa-5x"></h1></a>';
+              echo '<h4 class="modal-title" style="text-align:center;font-size: 23pt ! important;">'.utf8_encode($srvc["service_title"]).'</h4>
               </div>
               <div class="modal-body">
-                <p style="font-size: 18pt ! important;">'.utf8_encode($_SESSION['row'][$i]["service_description"]).'</p>
+                <p style="font-size: 18pt ! important;">'.utf8_encode($srvc["service_description"]).'</p>
               </div>
               <div class="modal-footer" style="text-align: center;">
-                <a style="text-align:left;float:left;" href="#" class="btn btn-default" type="button" data-toggle="modal" data-target="#'.$_SESSION['row'][$i]["service_ID"].'">Contacter la personne</a>
-                <p id="dist'.$_SESSION['row'][$i]["service_ID"].'" style="text-align:center;float:center;font-size: 13pt ! important;"></p>';
-                echo ('<script>setDistance('.$_SESSION['row'][$i]["service_ID"].','.$_SESSION["user_adrLat"].','.$_SESSION["user_adrLng"].','.$_SESSION["row"][$i]["user_address_latitude"].','.$_SESSION["row"][$i]["user_address_longitude"].')</script>');
+                <a style="text-align:left;float:left;" href="#" class="btn btn-default" type="button" data-toggle="modal" data-target="#'.$srvcID.'">Contacter la personne</a>
+                <span id="dist'.$srvcID.'" style="text-align:center;float:center;font-size: 13pt ! important;"></span>';
+                if($usrLogged)
+                  echo ('<script>setDistance('.$srvcID.','.$_SESSION["user_adrLat"].','.$_SESSION["user_adrLng"].','.$srvc["user_address_latitude"].','.$srvc["user_address_longitude"].')</script>');
                 echo '<p style="text-align:right;float:right;font-size: 13pt ! important;">Valable du '.date("d/m/y", $date).' jusqu\'au '.date("d/m/y", $delay).'</p>
               </div>
             </div>
@@ -81,7 +87,7 @@
         </div>
 
         <!-- Modal contacter service-->
-        <div style="padding-top: 15%" id="'.$_SESSION['row'][$i]["service_ID"].'" class="modal fade" role="dialog">
+        <div style="padding-top: 15%" id="'.$srvcID.'" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -92,9 +98,9 @@
               <div class="modal-body">
                 <p style="font-size: 18pt ! important;"><u><b>Que souhaitez vous lui dire ?</b></u><br><br>
                 <form id="sendMail" method="post" action="../controleurs/answerService_controleur.php">
-                  <input type="hidden" name="destination" value="'.utf8_encode($_SESSION['row'][$i]["user_email"]).'">
+                  <input type="hidden" name="destination" value="'.utf8_encode($srvc["user_email"]).'">
                   <input type="hidden" name="type" value="answerService">
-                  <input type="hidden" name="subject" value="Message pour votre annonce : '.utf8_encode($_SESSION['row'][$i]["service_title"]).'">
+                  <input type="hidden" name="subject" value="Message pour votre annonce : '.utf8_encode($srvc["service_title"]).'">
                   <textarea style="font-size: 18pt ! important; width:80%;" class="input-xlarge" name="message" rows="5"></textarea>
 
               </div>
