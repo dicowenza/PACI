@@ -159,16 +159,21 @@
 
 		}
 
-		public function insert_service_faq($user_ID, $title, $description, $category){
+		public function insert_service($user_ID, $title, $description, $category, $date, $delay){
+			$date = str_replace("-", ",", $date);
+			$delay = str_replace("-", ",", $delay);
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$query = $connexion->prepare("INSERT INTO service (service_user_ID, service_title, service_description, service_category, service_date, service_delay) VALUES (:userID, :title, :description, :category, now(), now())");
+			$query = $connexion->prepare("INSERT INTO service (service_user_ID, service_title, service_description, service_category, service_date, service_delay) VALUES (:userID, :title, :description, :category, STR_TO_DATE(:dates, '%Y,%m,%d'), STR_TO_DATE(:delay, '%Y,%m,%d'))");
     		$query->execute(array(
             'userID' => $user_ID,
             'title' => utf8_decode($title),
             'description' => utf8_decode($description),
-            'category' => utf8_decode($category)
+            'category' => utf8_decode($category),
+            'dates' =>  $date,
+            'delay' =>  $delay
             ));
+
     		//$data = $query->fetchAll();
 		}
 

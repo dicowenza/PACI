@@ -23,7 +23,12 @@
       echo '<div style="font-size:20pt;text-align: center;" class="alert alert-danger">
         <strong>ERROR!</strong> '.$message.'
       </div>';
-    } 
+    } else if (isset($_GET["need2connect"])){
+      $message = "Connectez-vous avant tout!";
+      echo '<div style="font-size:20pt;text-align: center;" class="alert alert-danger">
+        <strong>ERROR!</strong> '.$message.'
+      </div>';
+    }
   ?>
 
   <div align="center" style="margin-top: 10%">

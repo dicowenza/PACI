@@ -140,7 +140,7 @@
                  <li><input style="font-size: 18pt ! important; width:80%" class="input-xlarge" type="text" name="title"></li><br><br>
                  <li style="font-size: 18pt ! important;" class="nav-header"><u><b>Description</b></u></li><br>
                  <li><textarea style="font-size: 18pt ! important; width:80%" class="input-xlarge" name="description" rows="5"></textarea></li><br>
-                 <li style="font-size: 18pt ! important;" class="nav-header">Valable du <input style="font-size: 14pt; width:30%" class="input-xlarge" type="date" name="date">au<input style="font-size: 14pt; width:30%" class="input-xlarge" type="date" name="delay"></li> 
+                 <li style="font-size: 18pt ! important;" class="nav-header">Valable du <input style="font-size: 14pt; width:26%" class="input-xlarge" type="date" name="date"> au <input style="font-size: 14pt; width:26%" class="input-xlarge" type="date" name="delay"></li> 
                 </ul><br><br>
                </fieldset>
                </form>
