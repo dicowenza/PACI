@@ -11,7 +11,7 @@
 <script src="bootstrap/js/jquery.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
+<script type="text/javascript"> 
 </script>
 
 <body align="center" text-align="center">
