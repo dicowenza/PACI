@@ -27,8 +27,12 @@
   <?php
 
       $usr = $_SESSION['row'][0];
-      echo '<form action="../controleurs/update_user_profil_controleur.php" method="post">
-      <div class="form-group">
+      echo '<form action="../controleurs/update_user_profil_controleur.php" method="post">';
+
+      if($_SESSION['user_isModerator'])
+        echo '<h2 style="color:red;">Vous avez les privilèges d\'un modérateur</h2><br>';
+
+      echo '<div class="form-group">
           <label style="font-size:15pt;" for="nom">Nom</label>
           <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" name="lastname" class="form-control" id="nom" value="'.$usr["user_lastname"].'">
       </div><br>

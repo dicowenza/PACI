@@ -44,8 +44,9 @@
 
       $date = new DateTime($faq["faq_date"]);
       $now = new DateTime();
+      $faqUsr = $faq["user_nickname"].($faq["user_isModerator"] == 1 ? " [MODERATEUR]" : "");
       echo '' . $faqText . '
-      <br/><br /><p class="modal-title" style="font-size: 13pt ! important;"><i>' . $date->diff($now)->format('Il y a %d jours') . (($nbAnswer > 0) ? '. <b>' : '. ') . $nbAnswer . ' réponse(s)</b></i></p>
+      <br/><br /><p class="modal-title" style="font-size: 13pt ! important;"><i>' . $date->diff($now)->format('Il y a %d jours par ').$faqUsr.(($nbAnswer > 0) ? '. <b>' : '. ') . $nbAnswer . ' réponse(s)</b></i></p>
       </button>
       <div style="padding-top: 5%" id="'.$faqID.'" class="modal fade " role="dialog">
         <div class="modal-dialog modal-lg">
@@ -78,9 +79,10 @@
               </div></div>';
                   }
 
+              $usrAsw = $asw["user_nickname"].($asw["user_isModerator"] == 1 ? " [MODERATEUR]" : "");
               echo '<div style="padding:2%; outline: 1px solid">
                 <p style="font-size: 15pt ! important;">' . utf8_encode($asw["answer_text"]) . '</p>
-                <p class="modal-title" style="font-size: 13pt ! important;"><i>' . $AswDate->diff($now)->format('Il y a %d jours') . ' par ' . $asw["user_nickname"] . '</i></p>
+                <p class="modal-title" style="font-size: 13pt ! important;"><i>' . $AswDate->diff($now)->format('Il y a %d jours') . ' par ' . $usrAsw.'</i></p>
               </div><br />';
               }
           }
