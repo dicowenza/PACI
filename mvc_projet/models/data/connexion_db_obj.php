@@ -27,6 +27,7 @@
 		}
 
 		public function inscription($nom,$prenom,$pseudo,$mail,$adresse,$latitude,$longitude,$rand){
+			try{
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 				$req = $connexion->prepare("INSERT INTO user (user_firstname, user_lastname, user_password, user_nickname, user_email, user_address, user_address_latitude, user_address_longitude, user_id_confirm) VALUES (:prenom, :nom, :password, :pseudo, :email, :adresse, :adresseLat, :adresseLgn, :id_confirm)");
@@ -41,7 +42,10 @@
             	'adresseLgn' => $longitude,
             	'id_confirm' => $rand
             ));
-            echo 'done';
+		}catch(PDOException $e){
+    		return((int) $e->getCode());
+    	}
+
 		}
 
 		public function login($usr_log){
@@ -245,6 +249,7 @@
 		}
 
 		public function final_insertion_user($id, $pseudo, $password){
+			try {
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			$query = $connexion->prepare("UPDATE user SET user_password = :password, user_nickname = :pseudo, user_id_confirm = 0 WHERE user_id_confirm=:id");
@@ -253,6 +258,9 @@
             'pseudo' => utf8_decode($pseudo),
             'password' => utf8_decode($password)
             ));
+		}catch(PDOException $e){
+    		return((int) $e->getCode());
+    	}
 
 		}
 
