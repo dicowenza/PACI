@@ -23,12 +23,7 @@
       echo '<div style="font-size:20pt;text-align: center;" class="alert alert-danger">
         <strong>ERROR!</strong> '.$message.'
       </div>';
-    } else if (isset($_GET["notUnique"])){
-      $message = 'Il existe déjà quelqu\'un qui a choisi ce pseudo.';
-      echo '<div style="font-size:20pt;text-align: center;" class="alert alert-danger">
-        <strong>ERROR!</strong> '.$message.'
-      </div>';
-    }
+    } 
   ?>
 
   <div align="center" style="margin-top: 10%">
