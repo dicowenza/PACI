@@ -67,7 +67,7 @@
             <div class="modal-content">
               <div class="modal-header">';
               $usrLogged = (isset($_SESSION["started"]) && $_SESSION["started"] == "true");
-              if ($_SESSION["user_ID"] == $srvc["service_user_ID"] && $usrLogged || (isset($_GET["my_services"])  && $_GET["my_services"] == "true"))
+              if ($_SESSION["user_isModerator"] == 1 || ($_SESSION["user_ID"] == $srvc["service_user_ID"] && $usrLogged) || (isset($_GET["my_services"])  && $_GET["my_services"] == "true"))
                   echo '<a style="text-align:left;float:left;" href="../controleurs/deleteService_controleur.php?serviceID='.$srvcID.'"><h1  class="glyphicon glyphicon-remove-sign fa-5x"></h1></a>';
               echo '<h4 class="modal-title" style="text-align:center;font-size: 23pt ! important;">'.utf8_encode($srvc["service_title"]).'</h4>
               </div>
