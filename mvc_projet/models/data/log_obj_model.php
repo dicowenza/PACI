@@ -7,7 +7,6 @@
 		public function __construct($login,$password){
 			$this->setLogin($login);
 			$this->setPassword($password);
-
 		}
 
 		public function setLogin($login){

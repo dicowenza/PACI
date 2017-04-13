@@ -18,6 +18,7 @@
 		$_SESSION["pseudo"]=$row[0]['user_nickname'];
 		$_SESSION["user_adrLat"]=$row[0]['user_address_latitude'];
 		$_SESSION["user_adrLng"]=$row[0]['user_address_longitude'];
+		$_SESSION["user_isModerator"]=$row[0]['user_isModerator'];
 		header('Location: ../vues/index.php');
 	}
 

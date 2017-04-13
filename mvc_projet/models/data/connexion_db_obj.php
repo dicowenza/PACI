@@ -83,7 +83,7 @@
 		public function db_load_faq_answers($faq_ID){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$query=$connexion->prepare("SELECT answer_faq.*, user_nickname, ifnull(sum(note_status),0) as nbr FROM answer_faq INNER JOIN user ON user_ID = answer_user_ID LEFT JOIN note ON answer_ID = note_answer_ID WHERE answer_faq_ID = ".$faq_ID." GROUP BY answer_ID ORDER BY nbr DESC");
+			$query=$connexion->prepare("SELECT answer_faq.*, user_nickname, user_isModerator, ifnull(sum(note_status),0) as nbr FROM answer_faq INNER JOIN user ON user_ID = answer_user_ID LEFT JOIN note ON answer_ID = note_answer_ID WHERE answer_faq_ID = ".$faq_ID." GROUP BY answer_ID ORDER BY nbr DESC");
 			$query->execute();
 			$i = 0;
 			while($row = $query->fetch(PDO::FETCH_ASSOC))
@@ -95,7 +95,7 @@
 		public function db_load_faq(){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$query=$connexion->prepare("SELECT *, count(answer_ID) AS nbr FROM faq LEFT JOIN answer_faq ON faq_ID = answer_faq_id GROUP BY faq_ID");
+			$query=$connexion->prepare("SELECT *, count(answer_ID) AS nbr FROM faq LEFT JOIN answer_faq ON faq_ID = answer_faq_id LEFT JOIN user ON faq_user_ID = user_ID GROUP BY faq_ID");
 			$query->execute();
 			$i = 0;
 			while($row = $query->fetch(PDO::FETCH_ASSOC))

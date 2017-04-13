@@ -28,6 +28,7 @@
   </div>
   <div align="center">
     <?php
+    $usrLogged = isset($_SESSION["started"]) && $_SESSION["started"] == "true";
     for ($i = 0; $i < count($_SESSION['row']); $i++)
     {
       $faq = $_SESSION['row'][$i];
@@ -37,15 +38,15 @@
       echo '
       <button align="center" style="width:80%; white-space: normal; margin: 1%; padding : 3%; font-size: 18pt ! important;" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#' . $faqID . '">';
 
-      if ($_SESSION["user_ID"] == $faq["faq_user_ID"] 
-            && isset($_SESSION["started"]) && $_SESSION["started"] == "true" 
+      if ($_SESSION["user_isModerator"] == 1 || ($_SESSION["user_ID"] == $faq["faq_user_ID"] && $usrLogged)
             || (isset($_GET["my_questions"]) && $_GET["my_questions"] == "true")) 
                 echo '<a style="text-align:left;float:left;" href="../controleurs/delete_question_controleur.php?faqID='.$faqID.'"><h1 class="glyphicon glyphicon-remove-sign fa-5x"></h1></a>';
 
       $date = new DateTime($faq["faq_date"]);
       $now = new DateTime();
+      $faqUsr = $faq["user_nickname"].($faq["user_isModerator"] == 1 ? " [MODERATEUR]" : "");
       echo '' . $faqText . '
-      <br/><br /><p class="modal-title" style="font-size: 13pt ! important;"><i>' . $date->diff($now)->format('Il y a %d jours') . (($nbAnswer > 0) ? '. <b>' : '. ') . $nbAnswer . ' réponse(s)</b></i></p>
+      <br/><br /><p class="modal-title" style="font-size: 13pt ! important;"><i>' . $date->diff($now)->format('Il y a %d jours par ').$faqUsr.(($nbAnswer > 0) ? '. <b>' : '. ') . $nbAnswer . ' réponse(s)</b></i></p>
       </button>
       <div style="padding-top: 5%" id="'.$faqID.'" class="modal fade " role="dialog">
         <div class="modal-dialog modal-lg">
@@ -64,12 +65,10 @@
               $asw = $_SESSION['faq_answers'][$i][$j];
               $AswDate = new DateTime($asw["answer_date"]);
               $logd = 1;
-              if (isset($_SESSION["started"]) && $_SESSION["started"] == "true")
-                  {
-                  if ($asw["answer_user_ID"] == $_SESSION["user_ID"]) echo '<a style="margin-left: 10px;text-align:left;float:left;" href="../controleurs/deleteAnswer_controleur.php?answerID=' . $asw["answer_ID"] . '&faqID=' . $faqID . '"><h2 class="glyphicon glyphicon-remove-sign fa-5x"></h2></a>';
-                  }
-                else $logd = 0;
-              if (!isset($_SESSION["started"]) && $_SESSION["started"] != "true" || (isset($_SESSION["started"]) && $_SESSION["started"] == "true" && $asw["answer_user_ID"] != $_SESSION["user_ID"]))
+              if ($usrLogged && ($asw["answer_user_ID"] == $_SESSION["user_ID"] || $_SESSION["user_isModerator"] == 1)) 
+                  echo '<a style="margin-left: 10px;text-align:left;float:left;" href="../controleurs/deleteAnswer_controleur.php?answerID=' . $asw["answer_ID"] . '&faqID=' . $faqID . '"><h2 class="glyphicon glyphicon-remove-sign fa-5x"></h2></a>';
+              
+              if (!$usrLogged || ($usrLogged && $asw["answer_user_ID"] != $_SESSION["user_ID"]))
                   {
                   $lk = ($logd == 0) ? 'connexion_vue.php' : ('../controleurs/insertNote_controleur.php?answerID='.$asw["answer_ID"].'&userID='.$_SESSION["user_ID"].'&faqID='.$faqID);
 
@@ -80,9 +79,10 @@
               </div></div>';
                   }
 
+              $usrAsw = $asw["user_nickname"].($asw["user_isModerator"] == 1 ? " [MODERATEUR]" : "");
               echo '<div style="padding:2%; outline: 1px solid">
                 <p style="font-size: 15pt ! important;">' . utf8_encode($asw["answer_text"]) . '</p>
-                <p class="modal-title" style="font-size: 13pt ! important;"><i>' . $AswDate->diff($now)->format('Il y a %d jours') . ' par ' . $asw["user_nickname"] . '</i></p>
+                <p class="modal-title" style="font-size: 13pt ! important;"><i>' . $AswDate->diff($now)->format('Il y a %d jours') . ' par ' . $usrAsw.'</i></p>
               </div><br />';
               }
           }
