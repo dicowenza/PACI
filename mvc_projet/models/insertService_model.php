@@ -11,7 +11,7 @@
         $_SESSION['db_connexion']=$db_connexion;
     }
 
-	$_SESSION['db_connexion']->insert_service_faq($_SESSION["user_ID"], $_SESSION["userServiceTitle"], $_SESSION["userService"], $_SESSION["userServiceCategory"]);
+	$_SESSION['db_connexion']->insert_service($_SESSION["user_ID"], $_SESSION["userServiceTitle"], $_SESSION["userService"], $_SESSION["userServiceCategory"], $_SESSION["serviceDate"], $_SESSION["serviceDelay"]);
 
     header('Location: ../controleurs/services_controleur.php');
 ?>

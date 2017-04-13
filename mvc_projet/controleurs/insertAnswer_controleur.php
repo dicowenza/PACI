@@ -9,5 +9,5 @@
 	if(isset($_SESSION["user_ID"]) && ($_SESSION["user_ID"] != -1)) 
         header("Location: ../models/insertAnswer_model.php");
     else
-        header('Location: ../vues/connexion_vue.php');
+        header('Location: ../vues/connexion_vue.php?need2connect=true');
 ?>

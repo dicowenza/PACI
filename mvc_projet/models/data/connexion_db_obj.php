@@ -27,6 +27,7 @@
 		}
 
 		public function inscription($nom,$prenom,$pseudo,$mail,$adresse,$latitude,$longitude,$rand){
+			try{
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 				$req = $connexion->prepare("INSERT INTO user (user_firstname, user_lastname, user_password, user_nickname, user_email, user_address, user_address_latitude, user_address_longitude, user_id_confirm) VALUES (:prenom, :nom, :password, :pseudo, :email, :adresse, :adresseLat, :adresseLgn, :id_confirm)");
@@ -41,7 +42,10 @@
             	'adresseLgn' => $longitude,
             	'id_confirm' => $rand
             ));
-            echo 'done';
+		}catch(PDOException $e){
+    		return((int) $e->getCode());
+    	}
+
 		}
 
 		public function login($usr_log){
@@ -83,7 +87,7 @@
 		public function db_load_faq_answers($faq_ID){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$query=$connexion->prepare("SELECT answer_faq.*, user_nickname, ifnull(sum(note_status),0) as nbr FROM answer_faq INNER JOIN user ON user_ID = answer_user_ID LEFT JOIN note ON answer_ID = note_answer_ID WHERE answer_faq_ID = ".$faq_ID." GROUP BY answer_ID ORDER BY nbr DESC");
+			$query=$connexion->prepare("SELECT answer_faq.*, user_nickname, user_isModerator, ifnull(sum(note_status),0) as nbr FROM answer_faq INNER JOIN user ON user_ID = answer_user_ID LEFT JOIN note ON answer_ID = note_answer_ID WHERE answer_faq_ID = ".$faq_ID." GROUP BY answer_ID ORDER BY nbr DESC");
 			$query->execute();
 			$i = 0;
 			while($row = $query->fetch(PDO::FETCH_ASSOC))
@@ -95,7 +99,7 @@
 		public function db_load_faq(){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$query=$connexion->prepare("SELECT *, count(answer_ID) AS nbr FROM faq LEFT JOIN answer_faq ON faq_ID = answer_faq_id GROUP BY faq_ID");
+			$query=$connexion->prepare("SELECT *, count(answer_ID) AS nbr FROM faq LEFT JOIN answer_faq ON faq_ID = answer_faq_id LEFT JOIN user ON faq_user_ID = user_ID GROUP BY faq_ID");
 			$query->execute();
 			$i = 0;
 			while($row = $query->fetch(PDO::FETCH_ASSOC))
@@ -155,16 +159,21 @@
 
 		}
 
-		public function insert_service_faq($user_ID, $title, $description, $category){
+		public function insert_service($user_ID, $title, $description, $category, $date, $delay){
+			$date = str_replace("-", ",", $date);
+			$delay = str_replace("-", ",", $delay);
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$query = $connexion->prepare("INSERT INTO service (service_user_ID, service_title, service_description, service_category, service_date, service_delay) VALUES (:userID, :title, :description, :category, now(), now())");
+			$query = $connexion->prepare("INSERT INTO service (service_user_ID, service_title, service_description, service_category, service_date, service_delay) VALUES (:userID, :title, :description, :category, STR_TO_DATE(:dates, '%Y,%m,%d'), STR_TO_DATE(:delay, '%Y,%m,%d'))");
     		$query->execute(array(
             'userID' => $user_ID,
             'title' => utf8_decode($title),
             'description' => utf8_decode($description),
-            'category' => utf8_decode($category)
+            'category' => utf8_decode($category),
+            'dates' =>  $date,
+            'delay' =>  $delay
             ));
+
     		//$data = $query->fetchAll();
 		}
 
@@ -245,6 +254,7 @@
 		}
 
 		public function final_insertion_user($id, $pseudo, $password){
+			try {
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			$query = $connexion->prepare("UPDATE user SET user_password = :password, user_nickname = :pseudo, user_id_confirm = 0 WHERE user_id_confirm=:id");
@@ -253,6 +263,9 @@
             'pseudo' => utf8_decode($pseudo),
             'password' => utf8_decode($password)
             ));
+		}catch(PDOException $e){
+    		return((int) $e->getCode());
+    	}
 
 		}
 
@@ -266,11 +279,14 @@
             ));
 		}
 
-		public function recherche_user($pseudo){
+		public function recherche_user($pseudo, $mail){
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$query = $connexion->prepare("SELECT * FROM user WHERE user_nickname = '".$pseudo."'");
-			$query->execute();
+			$query = $connexion->prepare("SELECT * FROM user WHERE user_nickname = :pseudo AND user_email = :mail");
+			$query->execute(array(
+				'pseudo' => $pseudo,
+				'mail' => $mail
+				));
 			$i = 0;
 			while($row = $query->fetch(PDO::FETCH_ASSOC))
 				$array[$i++] = $row;
@@ -278,9 +294,11 @@
 		}
 
 
-		public function update_user_profil($userID, $lastname, $firstname, $nickname, $email, $password){
+		public function update_user_profil($userID, $lastname, $firstname, $nickname, $email, $password, $e){
+			try{
 			$connexion=$this->db_reconnect();
 			$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			echo ' ere ';
 			$query = $connexion->prepare("UPDATE user SET user_firstname = :firstname, user_lastname = :lastname, user_nickname = :nickname, user_password = :password, user_email = :email WHERE user_ID = :userID");
     		$query->execute(array(
             'userID' => $userID,
@@ -290,7 +308,11 @@
             'password' => utf8_decode($password),
             'email' => $email
             ));
-    		//$data = $query->fetchAll();
+
+    	} catch(PDOException $e){
+    		return((int) $e->getCode());
+
+    	}
 
 		}
 

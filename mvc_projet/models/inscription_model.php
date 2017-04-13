@@ -12,7 +12,12 @@
 	#$nw_user=new User()
 	#$db_connexion->inscription(nw_user);
 	$rand = rand(100000000, 999999999);	
-	$_SESSION['db_connexion']->inscription($nom,$prenom,$pseudo,$mail,$adresse,$latitude,$longitude,$rand);
+	$e = $_SESSION['db_connexion']->inscription($nom,$prenom,$pseudo,$mail,$adresse,$latitude,$longitude,$rand);
+
+    if($e == 23000){
+        header("Location: ../vues/inscription_vue.php?notUnique=true");
+        break;
+    }
  
 	include_once("sendMail_model.php");
 

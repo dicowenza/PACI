@@ -1,8 +1,9 @@
 <?php
 
 	$pseudo = $_POST["pseudo"];
+	$mail = $_POST["email"];
 
-	if (empty($pseudo)){
+	if (empty($pseudo) || empty($mail)){
 		header('Location: ../vues/passwordIsForgotten_vue.php?empty_fields=true');
 	}
 

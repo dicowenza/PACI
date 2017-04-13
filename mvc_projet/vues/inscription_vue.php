@@ -27,6 +27,13 @@
     }else if(isset($_GET["successfulSignin"]))
       echo '<div style="font-size:20pt;text-align: center;" class="alert alert-success">
         <strong>BRAVO ! </strong>Un mail a été envoyé sur votre adresse mail, regardez vos mails et cliquez sur le lien pour pouvoir finaliser l\'inscription.</div>';
+
+        else if (isset($_GET["notUnique"])){
+      $message = 'Il existe déjà quelqu\'un qui a choisi ce pseudo.';
+      echo '<div style="font-size:20pt;text-align: center;" class="alert alert-danger">
+        <strong>ERROR!</strong> '.$message.'
+      </div>';
+    }
   ?>
 
   <div align="center">

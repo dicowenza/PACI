@@ -32,9 +32,7 @@
 
 		public function getAdresse(){
 			return $this->adresse;
-		}
-
-
+		} 
 
 		public  function getLogin(){
 			return $this->login;

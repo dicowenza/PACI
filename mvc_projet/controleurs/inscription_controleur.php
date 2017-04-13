@@ -22,7 +22,7 @@
 		header('Location: ../vues/inscription_vue.php?missing=pseudo'.$fields);
 	else if(empty($mail))
 		header('Location: ../vues/inscription_vue.php?missing=email'.$fields);
-	else if(empty($latitude))
+	else if(empty($adresse) || empty($latitude))
 		header('Location: ../vues/inscription_vue.php?missing=adresse'.$fields);
 
 	else

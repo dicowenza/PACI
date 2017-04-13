@@ -21,7 +21,12 @@
     if (isset($_GET["bad_language"]) || isset($_GET["empty_fields"])){
       $message = isset($_GET["bad_language"]) ? "On te connait pas toi !! Inscrivez vous stp" : "Remplissez tous les champs svp";
       echo '<div style="font-size:20pt;text-align: center;" class="alert alert-danger">
-        <strong>STOP MEC !</strong> '.$message.'
+        <strong>ERROR!</strong> '.$message.'
+      </div>';
+    } else if (isset($_GET["need2connect"])){
+      $message = "Connectez-vous avant tout!";
+      echo '<div style="font-size:20pt;text-align: center;" class="alert alert-danger">
+        <strong>ERROR!</strong> '.$message.'
       </div>';
     }
   ?>
