@@ -10,14 +10,14 @@
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 --
--- Base de données: `jefseutin`
+-- INITIALISATION DES TABLES DE LA BASE DE DONNEES
 --
 
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `answer_faq`
---cette table renferme les informations relatives aux réponses aux questions posées par les utilisateurs
+-- cette table renferme les informations relatives aux réponses aux questions posées par les utilisateurs
 
 
 CREATE TABLE IF NOT EXISTS `answer_faq` (
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `faq` (
 -- --------------------------------------------------------
 
 -- Structure de la table `note`
---cette table renferme les informations relatives aux notes attribuées par les utilisateurs aux aux reponses apportées 
+-- cette table renferme les informations relatives aux notes attribuées par les utilisateurs aux aux reponses apportées 
 
 CREATE TABLE IF NOT EXISTS `note` (
   `note_ID` int(11) NOT NULL auto_increment,
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `note` (
 
 --
 -- Structure de la table `service`
---cette table renferme les informations relatives aux services disponibles et proposés par les utilisateurs
+-- cette table renferme les informations relatives aux services disponibles et proposés par les utilisateurs
 --
 CREATE TABLE IF NOT EXISTS `service` (
   `service_ID` int(11) NOT NULL auto_increment,
@@ -83,8 +83,8 @@ CREATE TABLE IF NOT EXISTS `service` (
 -- --------------------------------------------------------
 
 --
---Structure de la table `user`
---cette table renferme les informations relatives à l'identité des utilisateur détenteurs d'un compte
+-- Structure de la table `user`
+-- cette table renferme les informations relatives à l'identité des utilisateur détenteurs d'un compte
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -106,11 +106,11 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 
 
-----------------------------------------------------
+-- --------------------------------------------------
 --                                                --
---confiuration de l'utilisateur administrateur    --
+-- confiuration de l'utilisateur administrateur   --
 --                                                --
-----------------------------------------------------
+-- --------------------------------------------------
 
 
 -- Cette section est destinée à la configuration de l'utilisateur  administrateur  de façon automatique dès que 
@@ -119,32 +119,32 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 
 
---variables à définir
-DECLARE @nom varchar(30);
-DECLARE @prenom varchar(30);
-DECLARE @pseudo varchar(50) NOT NULL;
-DECLARE @email varchar(50) NOT NULL;
-DECLARE @mot_de_pass varchar(50) NOT NULL;
-DECLARE @adresse varchar(150) NOT NULL;
-DECLARE @address_latitude varchar(30) NOT NULL, @address_longitude varchar(30) NOT NULL;
-DECLARE @est_administrateur tinyint(1) NOT NULL default '1';
+-- variables à définir
+-- DECLARE @nom varchar(30) NOT NULL;
+-- DECLARE @prenom varchar(30);
+-- DECLARE @pseudo varchar(50) NOT NULL;
+-- DECLARE @email varchar(50) NOT NULL;
+-- DECLARE @mot_de_pass varchar(50) NOT NULL;
+-- DECLARE @adresse varchar(150) NOT NULL;
+-- DECLARE @address_latitude varchar(30) NOT NULL, @address_longitude varchar(30) NOT NULL;
+-- DECLARE @est_administrateur tinyint(1) NOT NULL default '1';
 
 
--------------------  Identité de l'administrateur ----------
+-- -----------------  Identité de l'administrateur ----------
 -- 
 
 
-SET @pnom='';
-SET @prenom='';
-SET @pseudo='';
-SET @email ='';
+-- SET @nom='feri';
+-- SET @prenom='chris';
+-- SET @pseudo='admin';
+-- SET @email ='admin';
 
--------------------------- Adrese de l'administrateur -----------
+-- ------------------------ Adrese de l'administrateur -----------
 
-SET @adresse='';
-SET @address_latitude='';
-SET @address_longitude='';
+-- SET @adresse='Route Nationale 113, Beautiran, France';
+-- SET @address_latitude='44.69936750000001';
+-- SET @address_longitude='-0.46199590000003354';
 
 
 
---INSERT INTO `user` (`user_ID`, `user_firstname`, `user_lastname`, `user_nickname`, `user_password`, `user_email`, `user_address`, `user_address_latitude`, `user_address_longitude`, `user_id_confirm`, `user_isModerator`) VALUES('',@prenom,@nom,@pseudo,@mot_de_pass,@email,@adresse,@address_latitude,@address_longitude,'0',@est_administrateur);
+-- INSERT INTO `user` (`user_ID`, `user_firstname`, `user_lastname`, `user_nickname`, `user_password`, `user_email`, `user_address`, `user_address_latitude`, `user_address_longitude`, `user_id_confirm`, `user_isModerator`) VALUES('',@prenom,@nom,@pseudo,@mot_de_pass,@email,@adresse,@address_latitude,@address_longitude,'0',@est_administrateur);
