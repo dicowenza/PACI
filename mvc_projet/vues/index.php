@@ -22,14 +22,13 @@
 
   <div text-align="center" align="center" style="margin-top:5%;">
 
-    <h1>Projet d'Aide pour la Commune Imaginé et Destiné aux Néophytes, Agés et Handicapés</h1>
+    <h1>Projet d'Aide à la Commune Imaginé et Destiné aux Néophytes, Agés et Handicapés</h1>
     <br><br>
 
 
     <a href="../controleurs/questions_controleur.php">
       <button style="font-size: 35px ! important; width: 80%; padding: 20px;" class="btn btn-success" type="button" >
-      <img src="../images/search.png" style="width: 10%;height: auto;float: left">
-      Une question vous turlupine ?<br> Posez là ici et les habitants de votre commune de<br> Saint Aubin Les Pignols vous répondront
+      <img src="../images/search.png" style="width: 10%;height: auto;float: left">Une question ?<br>Trouvez votre réponse ici
       </button>
     </a>
     
@@ -38,7 +37,7 @@
     <a href="../controleurs/services_controleur.php">
       <button style="font-size: 35px ! important; width: 80%; padding: 20px;" class="btn btn-primary" type="button" >
       <img src="../images/help.png" style="width: 10%;height: auto;float: left">
-      Vous avez besoin de quelqu'un, ou vous souhaitez<br> proposer un service pour les habitants de votre commune ?<br> Déposez une annonce ici, c'est gratos ;)
+      Consultez ou déposez<br>une annonce ici, c'est gratos ;)
       </button>
     </a>
 

@@ -18,7 +18,10 @@
 	else
 		$_SESSION['row'] = $_SESSION['db_connexion']->db_load_services();
 
-		print_r($_SESSION["row"][0]["user_email"]);
+	print_r($_SESSION["row"][0]["user_email"]);
+	if(isset($_GET["map"]))
+		header('Location: ../vues/services_on_map.php');
+	else
 		header('Location: ../vues/services_vue.php');
 
 ?>

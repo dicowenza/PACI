@@ -10,6 +10,7 @@
 
 <script src="bootstrap/js/jquery.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNfIpY1HskI6EdkVAMVwb9QwULRc-VPUk&libraries=places&callback=initMap"async defer></script>
 
 <script type="text/javascript"> 
 </script>
@@ -59,6 +60,37 @@
       </div><br>
 
       <div class="form-group">
+          <label style="font-size:15pt;" for="adresse">Adresse postale</label>
+          <input id="adresse" style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" name="adresse" class="form-control" id="mail" value="'.utf8_encode($usr["user_address"]).'">
+      </div><br>';
+
+
+
+
+      echo '<script>
+        function initMap() {
+          var cityBounds = new google.maps.LatLngBounds(
+              new google.maps.LatLng(44.783621,-0.566061),
+              new google.maps.LatLng(44.822751, -0.537646)
+          );
+
+          var input = document.getElementById("adresse");
+          var options = {
+            bounds: cityBounds,
+            types: ["geocode"],
+            componentRestrictions: {country: "fr"}
+          };
+          var autocomplete = new google.maps.places.Autocomplete(input, options);
+          autocomplete.addListener("place_changed", function() {
+            var place = autocomplete.getPlace();
+            document.getElementById("inputLat").value = place.geometry ? place.geometry.location.lat() : "";
+            document.getElementById("inputLng").value = place.geometry ? place.geometry.location.lng() : "";
+          });
+        }
+      </script>';
+
+
+      echo '<div class="form-group">
           <label style="font-size:15pt;" for="mdp">Mot de passe</label>
           <input style="width:30%; height:15%; text-align:center; font-size:20pt;" type="text" name="password" class="form-control" id="mdp" value="'.$usr["user_password"].'">
       </div><br>

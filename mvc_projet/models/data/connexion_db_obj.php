@@ -26,6 +26,10 @@
 			}
 		}
 
+		public function get_domain(){
+			return $this->configuration['db_config_domain'];
+		}
+
 		public function inscription($nom,$prenom,$pseudo,$mail,$adresse,$latitude,$longitude,$rand){
 			try{
 			$connexion=$this->db_reconnect();
