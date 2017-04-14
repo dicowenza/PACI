@@ -41,23 +41,21 @@
       <div>
         <button style="font-size: 18pt ! important; width: 45%; height: 100px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recherche par catégorie
         <span class="caret"></span></button>
-        <button onclick="window.location='../controleurs/services_controleur.php?map'" style="margin-left:5%;font-size: 18pt ! important; width: 45%; height: 100px;" class="btn btn-default" type="button" >Voir sur une map(carte)</button>
-      </div>
+        <button onclick="window.location='../controleurs/services_controleur.php?map'" style="margin-left:5%;font-size: 18pt ! important; width: 45%; height: 100px;" class="btn btn-default" type="button" >Voir sur une map (carte)</button>
 
-      <ul class="dropdown-menu" aria-labelledby="services">
-         <li><a style="font-size: 18pt ! important;" href="../controleurs/services_controleur.php">Tous</a></li>
-         <li><a style="font-size: 18pt ! important;" href="../controleurs/services_controleur.php?category=Aide a domicile">Aide à domicile</a></li>
-         <li><a style="font-size: 18pt ! important;" href="../controleurs/services_controleur.php?category=Soins infirmiers">Soins infirmiers</a></li>
-         <li><a style="font-size: 18pt ! important;" href="../controleurs/services_controleur.php?category=Loisirs">Loisirs</a></li>
-      </ul>
+        <ul class="dropdown-menu" aria-labelledby="services">
+          <li><a style="font-size: 18pt ! important;" href="../controleurs/services_controleur.php">Tous</a></li>
+          <li><a style="font-size: 18pt ! important;" href="../controleurs/services_controleur.php?category=Aide a domicile">Aide à domicile</a></li>
+          <li><a style="font-size: 18pt ! important;" href="../controleurs/services_controleur.php?category=Soins infirmiers">Soins infirmiers</a></li>
+          <li><a style="font-size: 18pt ! important;" href="../controleurs/services_controleur.php?category=Loisirs">Loisirs</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 
   <div align="center">
 
-    <?php
-
-        
+    <?php        
         for($i = 0; $i< count($_SESSION['row']); $i++ ){
         $srvc = $_SESSION['row'][$i];
         $srvcID = $srvc["service_ID"];
@@ -137,7 +135,7 @@
                 <br><ul class="nav nav-list">
                  <li style="font-size: 18pt ! important;" class="nav-header"><u><b>Catégorie</b></u></li><br>
                  <li>                     
-                    <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category" value="Aide a domicile">Aide à domicile</label>
+                    <label style="font-size: 15pt ! important;" class="radio-inline"><input checked="true" type="radio" name="category" value="Aide a domicile">Aide à domicile</label>
                     <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category" value="Soins infirmiers">Soins infirmiers</label>
                     <label style="font-size: 15pt ! important;" class="radio-inline"><input type="radio" name="category" value="Loisirs">Loisirs</label> 
                  </li><br><br>

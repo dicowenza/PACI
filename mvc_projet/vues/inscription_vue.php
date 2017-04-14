@@ -10,6 +10,8 @@
 
 <script src="../../bootstrap/js/jquery.js"></script>
 <script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNfIpY1HskI6EdkVAMVwb9QwULRc-VPUk&libraries=places&callback=initMap"async defer></script>
+
 
 <script type="text/javascript">
 </script>
@@ -73,7 +75,6 @@
         });
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNfIpY1HskI6EdkVAMVwb9QwULRc-VPUk&libraries=places&callback=initMap"async defer></script>
     
     <input id="inputLat" name="adresseLatitude" type="hidden" value="">
     <input id="inputLng" name="adresseLongitude" type="hidden" value="">
