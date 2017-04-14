@@ -10,8 +10,6 @@
 -----------------------------------------------------------------------------
 
 
-
-
 Ce projet à pour but , de mettre en place un outil numérique  pour une commune afin que celle-ci gère un environneent d'aide  collaboratif destinné aux personnes agées et aux handicapés.
 Ce document explique les configurartions nécessaires à la mise en place de ce site.
 
@@ -25,12 +23,12 @@ configurartion de la base de données: racine/mvc_projet/db_config/
 
 
 
-INSTALATION:
+MIGRATION:
 ------------
 
 
 
-	----------  INITIALISATION DE LA BASE DE DONNEES -----------
+	----------  MIGRATION DE LA BASE DE DONNEES -----------
 
 Pour mettre en place ce site , il fut mettre  en place la créer les bases de données nécessaires à son bon fonctionnement. Pour cela ,
 il y a deux fichiers dans le repertoir de configuration de la base de données : "app.ini" et "init_db.sql".Deux étapes sont nécessaires à l'initialisation de cette base de données . 

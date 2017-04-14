@@ -116,35 +116,17 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Cette section est destinée à la configuration de l'utilisateur  administrateur  de façon automatique dès que 
 -- la migration de la base de donée aura été effectuée. veuillez à ce que les différentes valeur soitent bien replie.
 
+-- Remplacer les champs commançant par un @ par vos données personnelles, puis décommentez la ligne.
+
+-- INSERT INTO `user` (`user_ID`, `user_firstname`, `user_lastname`, `user_nickname`, `user_password`, `user_email`, `user_address`, `user_address_latitude`, `user_address_longitude`, `user_id_confirm`, `user_isModerator`) VALUES('',@prenom,@nom,@pseudo,@mot_de_pass,@email,'Route Nationale 113, Beautiran, France',44.69936750000001,-0.46199590000003354,'0',@est_administrateur);
 
 
 
--- variables à définir
--- DECLARE @nom varchar(30) NOT NULL;
--- DECLARE @prenom varchar(30);
--- DECLARE @pseudo varchar(50) NOT NULL;
--- DECLARE @email varchar(50) NOT NULL;
--- DECLARE @mot_de_pass varchar(50) NOT NULL;
--- DECLARE @adresse varchar(150) NOT NULL;
--- DECLARE @address_latitude varchar(30) NOT NULL, @address_longitude varchar(30) NOT NULL;
--- DECLARE @est_administrateur tinyint(1) NOT NULL default '1';
-
-
--- -----------------  Identité de l'administrateur ----------
--- 
-
-
--- SET @nom='feri';
--- SET @prenom='chris';
--- SET @pseudo='admin';
--- SET @email ='admin';
-
--- ------------------------ Adrese de l'administrateur -----------
-
--- SET @adresse='Route Nationale 113, Beautiran, France';
--- SET @address_latitude='44.69936750000001';
--- SET @address_longitude='-0.46199590000003354';
 
 
 
--- INSERT INTO `user` (`user_ID`, `user_firstname`, `user_lastname`, `user_nickname`, `user_password`, `user_email`, `user_address`, `user_address_latitude`, `user_address_longitude`, `user_id_confirm`, `user_isModerator`) VALUES('',@prenom,@nom,@pseudo,@mot_de_pass,@email,@adresse,@address_latitude,@address_longitude,'0',@est_administrateur);
+
+
+
+
+
