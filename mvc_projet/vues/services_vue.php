@@ -37,8 +37,13 @@
 
   <div align="center">
     <div style="width:80%" class="btn-group">
-      <button style="font-size: 18pt ! important; width: 100%; height: 100px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recherche par catégorie
-      <span class="caret"></span></button>
+      
+      <div>
+        <button style="font-size: 18pt ! important; width: 45%; height: 100px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recherche par catégorie
+        <span class="caret"></span></button>
+        <button onclick="window.location='../controleurs/services_controleur.php?map'" style="margin-left:5%;font-size: 18pt ! important; width: 45%; height: 100px;" class="btn btn-default" type="button" >Voir sur une map(carte)</button>
+      </div>
+
       <ul class="dropdown-menu" aria-labelledby="services">
          <li><a style="font-size: 18pt ! important;" href="../controleurs/services_controleur.php">Tous</a></li>
          <li><a style="font-size: 18pt ! important;" href="../controleurs/services_controleur.php?category=Aide a domicile">Aide à domicile</a></li>

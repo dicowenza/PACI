@@ -10,6 +10,8 @@
 	//sinon on lui affiche la liste des services
 	if(isset($_GET["category"]))
 		header("Location: ../models/services_model.php?category=".$_GET["category"]);
+	else if(isset($_GET["map"]))
+		header("Location: ../models/services_model.php?map");
 	else
 		header("Location: ../models/services_model.php");
 
