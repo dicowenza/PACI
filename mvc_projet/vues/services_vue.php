@@ -18,7 +18,7 @@
   function calcDist(lat1,lon1,lat2,lon2){
     var p1 = new google.maps.LatLng(lat1, lon1);
     var p2 = new google.maps.LatLng(lat2, lon2);
-    return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
+    return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(0);
   }
 
   function setDistance(serviceID,lat1,lon1,lat2,lon2){
