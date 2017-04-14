@@ -11,9 +11,9 @@ $db_config_domain = $_SESSION['db_connexion']->get_domain();
 if ($type == "confirmation"){
 	$to      = $mail;
 	$subject = "Inscription Pacidnah de ".$pseudo;
-	$message = "Bonjour et merci pour votre inscription.\n Pour la finaliser, veuillez cliquer sur ce lien : http://".$db_config_domain."/pacidnah/mvc_projet/vues/signupConfirmed_vue.php?mail_confirmed=true&id=".$rand."&pseudo=".$pseudo;
-	$headers = 'From: Pacidnah, pour vous servir' . "\r\n" .
-     'Reply-To: Pacidnah, pour vous servir' . "\r\n" .
+	$message = "Bonjour et merci pour votre inscription. Pour la finaliser, veuillez cliquer sur ce lien : http://".$db_config_domain."/pacidnah/mvc_projet/vues/signupConfirmed_vue.php?mail_confirmed=true&id=".$rand."&pseudo=".$pseudo;
+	$headers = 'From: Pacidnah' . "\r\n" .
+     'Reply-To: Pacidnah' . "\r\n" .
      'X-Mailer: PHP/' . phpversion();
      echo 'ici';
 
@@ -21,16 +21,16 @@ if ($type == "confirmation"){
 	$to      = $mail;
 	$subject = "Validation du nouveau mot de passe, ".$pseudo;
 	$message = "Vous avez demandé un renouvelement de mot de passe. Voici un mot de passe temporaire: ".$mdp;
-	$headers = 'Pacidnah, pour vous servir' . "\r\n" .
-     'Reply-To: Pacidnah, pour vous servir' . "\r\n" .
+	$headers = 'From: Pacidnah' . "\r\n" .
+     'Reply-To: Pacidnah' . "\r\n" .
      'X-Mailer: PHP/' . phpversion();
 
 } else if ($type == "answerQuestion"){
 	$to      = $mail;
 	$subject = utf8_decode("On a répondu à une de vos question, ".$pseudo);
 	$message = "Une de vos question à susciter la curiosité de ".$answerer.", allez voir!";
-	$headers = 'From: Pacidnah, pour vous servir' . "\r\n" .
-     'Reply-To: Pacidnah, pour vous servir' . "\r\n" .
+	$headers = 'From: Pacidnah' . "\r\n" .
+     'Reply-To: Pacidnah' . "\r\n" .
      'X-Mailer: PHP/' . phpversion();
 
 } else if ($type == "answerService"){
